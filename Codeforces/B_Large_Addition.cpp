@@ -12,16 +12,19 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), ans(n);
-        for(int i = 0; i < n; i++) cin >> v[i];
-        ans[0] = v[0];
-        for(int i = 1; i < n; i++){
-            if(v[i] == v[i - 1]) ans[i] = -1;
-            else ans[i] = v[i];
+        string s; cin >> s;
+        reverse(s.begin(), s.end());
+        int ok = 1, n = sz(s);
+        for(int i = 1; i < n - 1; i++){
+            if(s[i] == '0'){
+                ok = 0; break;
+            }
         }
-        for(int i = 0; i < n; i++) cout << ans[i] << ' ';
-        cout << endl;
+        if(s[0] == '9') ok = 0;
+        if(s[n - 1] > '1') ok = 0;
+
+        if(ok) cout << "YES" << endl;
+        else cout << "NO" << endl;
     }
     
     return 0;

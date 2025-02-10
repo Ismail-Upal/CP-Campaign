@@ -5,11 +5,6 @@ using ll = long long;
 #define endl "\n"
 #define sz(x) (ll)(x).size()
 #define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
-template<typename T> using pbds=tree<T,null_type,less_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
-//p.order_of_key(x), p.find_by_order(idx)
 //-------------------------------------------
 
 int32_t main()
@@ -18,35 +13,34 @@ int32_t main()
     
     tc{
         int n; cin >> n;
-        vector<pair<int, int>> v(n);
-        set<int> se;
-        map<int, int>mp;
+        vector<int> l(n), r(n);
+        map<int, int> mp;
+        vector<int> v;
         for(int i = 0; i < n; i++){
-            int l, r; cin >> l >> r;
-            if(l == r) mp[l]++, se.insert(l);
-            v[i] = {l, r};
+            cin >> l[i] >> r[i];
+            if(l[i] == r[i]){
+                mp[l[i]]++;
+                v.push_back(l[i]);
+            }
         }
-        string s = "";
-        vector<int> vec(se.begin(), se.end()); 
+        sort(v.begin(), v.end());
+        v.erase(unique(v.begin(), v.end()), v.end());
+
         for(int i = 0; i < n; i++){
-            int l = v[i].first, r = v[i].second;
-            if(l == r){
-                if(mp[l] > 1) s += '0';
-                else s += '1';
+            if(l[i] != r[i]){
+                int lo = lower_bound(v.begin(), v.end(), l[i]) - v.begin();
+                int hi = lower_bound(v.begin(), v.end(), r[i]) - v.begin();
+                if(lo < sz(v) and hi <sz(v) and v[lo] == l[i] and v[hi] == r[i] and hi - lo + 1 == r[i] - l[i] + 1){
+                    cout << 0;
+                }
+                else cout << 1 ;
             }
             else{
-                int sz = r - l + 1;
-                int lo = lower_bound(vec.begin(), vec.end(), l) - vec.begin();
-                int up = lower_bound(vec.begin(),vec.end(), r) - vec.begin();
-                // cout << lo << " " << up << endl;
-                if(lo < sz(vec) and up < sz(vec) and vec[lo] == l and vec[up] == r){
-                    if(up - lo + 1 == sz) s += '0';
-                    else s += '1';
-                }
-                else s += '1';
+                if(mp[l[i]] > 1) cout << 0 ;
+                else cout << 1 ;
             }
         }
-        cout << s << endl;
+        cout << endl;
     }
     
     return 0;

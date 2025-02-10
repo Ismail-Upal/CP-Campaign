@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define opt() ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 using ll = long long;
 #define endl "\n"
 #define sz(x) (ll)(x).size()
@@ -12,9 +12,8 @@ int32_t main()
     opt();
     
     tc{
-        int k, l1, r1, l2, r2; cin >> k >> l1 >> r1 >> l2 >> r2;
-        int kn = r2 / l1;
-        int n = log(kn) / log(k); n++;
+        int n; cin >> n;
+        string s; cin >> s;
         
     }
     

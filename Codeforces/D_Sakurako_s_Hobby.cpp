@@ -12,20 +12,27 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), ans(n), left;
-        map<int, int> mp, mp2;
+        int n; cin >> n;
+        vector<int> v(n);
         for(int i = 0; i < n; i++){
             cin >> v[i];
-            mp[v[i]]++;
+            v[i]--;
         }
-        for(int i = 1; i <= n; i++){
-            if(mp[i] == 0) left.push_back(i);
-        }
-        int j = 0;
+        string s; cin >> s;
+        vector<int> ans(n), vis(n);
         for(int i = 0; i < n; i++){
-            if(mp2[v[i]] == 0) ans[i] = v[i], mp2[v[i]]++;
-            else ans[i] = left[j], j++;
+            if(vis[i]) continue;
+            int u = i, cnt = 0;
+            vector<int> path;
+            while(!vis[u]){
+                vis[u] = 1;
+                path.push_back(u);
+                if(s[u] == '0') cnt++;
+                u = v[u];
+            }
+            for(auto v : path){
+                ans[v] = cnt;
+            }
         }
         for(int i = 0; i < n; i++) cout << ans[i] << ' ';
         cout << endl;

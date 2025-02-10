@@ -12,17 +12,18 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), ans(n);
-        for(int i = 0; i < n; i++) cin >> v[i];
-        ans[0] = v[0];
-        for(int i = 1; i < n; i++){
-            if(v[i] == v[i - 1]) ans[i] = -1;
-            else ans[i] = v[i];
+        ll x, y, k; cin >> x >> y >> k;
+        ll ans = 0;
+        if(x > y){
+            int mv = (x + k - 1) / k;
+            
         }
-        for(int i = 0; i < n; i++) cout << ans[i] << ' ';
-        cout << endl;
+        else if(x <= y){
+            int mv = (y + k - 1) / k;
+            ans += mv + mv;
+        }
+        cout << ans << endl;
     }
-    
+
     return 0;
 }

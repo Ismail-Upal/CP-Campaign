@@ -12,16 +12,22 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), ans(n);
+        int n, m; cin >> n >> m;
+        vector<int> v(n);
         for(int i = 0; i < n; i++) cin >> v[i];
-        ans[0] = v[0];
+        int x; cin >> x;
+        int ok = 1;
+        v[0] = min(v[0], x - v[0]);
         for(int i = 1; i < n; i++){
-            if(v[i] == v[i - 1]) ans[i] = -1;
-            else ans[i] = v[i];
+            int mn = min(v[i], x - v[i]);
+            int mx = max(v[i], x - v[i]);
+            if(mn >= v[i - 1]) v[i] = mn;
+            else if(mx >= v[i - 1]) v[i] = mx;
+            else if(mx < v[i - 1]) ok = 0;
         }
-        for(int i = 0; i < n; i++) cout << ans[i] << ' ';
-        cout << endl;
+        
+        if(ok) cout << "YES" << endl;
+        else cout << "NO" << endl;
     }
     
     return 0;
