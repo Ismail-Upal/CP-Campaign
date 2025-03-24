@@ -10,15 +10,14 @@ using ll = long long;
 int32_t main()
 {   
     opt();
-    
-    tc{
-        string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
+
+        string t, s, sp, ans = ":("; cin >> t;
+        for(int i = 0; i < sz(t); i++){
+            s += t[i];
+            if(t[i] != 'a') sp += t[i];
+            if(t == s + sp) ans = s;
         }
         cout << ans << endl;
-    }
     
     return 0;
 }

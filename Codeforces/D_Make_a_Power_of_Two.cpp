@@ -1,10 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define opt() ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
-#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
 using ll = long long;
 #define endl "\n"
 #define sz(x) (ll)(x).size()
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
 //-------------------------------------------
 
 int32_t main()
@@ -13,11 +13,13 @@ int32_t main()
     
     tc{
         string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
-        }
-        cout << ans << endl;
+        int n = sz(s);
+        
+    }
+    ll i = 1;
+    while(i <= 1e13){
+        cerr << i << " " ;
+        i *= 2;
     }
     
     return 0;

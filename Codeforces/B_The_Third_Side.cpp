@@ -11,13 +11,18 @@ int32_t main()
 {   
     opt();
     
-    int n; cin >> n;
-    map<char, int> mp;
-    while(n--){
-        string s; cin >> s;
-        for(auto i : s) mp[i]++;
+    tc{
+        int n; cin >> n;
+        vector<int> v(n);
+        for(int i = 0; i < n; i++) cin >> v[i];
+        int cur = 0;
+        for(int i = 1; i < n; i++){
+            cur = v[i] + v[i - 1];
+            cur --;
+            v[i] = cur;
+        }
+        cout << v[n - 1] << endl;
     }
-    for(auto i : mp) cout << i.first << " " << i.second << endl;
-    
+
     return 0;
 }

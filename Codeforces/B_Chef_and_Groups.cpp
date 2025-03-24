@@ -13,9 +13,10 @@ int32_t main()
     
     tc{
         string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
+        int ans = 0, ok = 0;
+        for(auto i : s){
+            if(!ok and i == '1') ans++, ok = 1;
+            else if(i == '0') ok = 0;
         }
         cout << ans << endl;
     }

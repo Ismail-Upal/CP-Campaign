@@ -12,18 +12,19 @@ int32_t main()
     opt();
     
     tc{
-        int n, m; cin >> n >> m ;
-        vector<int> a(n + 1, 0), b(m + 1, 0);
-        for(int i = 1; i <= n; i++) cin >> a[i];
-        for(int i = 1; i <= m; i++) cin >> b[i];
-        if(b[1] - a[1] < a[1]) a[1] = b[1] - a[1];
-    
-        for(int i = 2; i <= n; i++){
-            int p1 = b[1] - a[i];
-            int p2 = a[i];
-
+        int n; cin >> n;
+        n -= 2;
+        vector<int> v(n);
+        for(int i = 0; i < n; i++){
+            cin >> v[i];
         }
-        if(is_sorted(a.begin() + 1, a.end())) cout << "YES" << endl;
+        int ok = 1;
+        for(int i = 0; i < n - 2; i++){
+            if(v[i] == 1 and v[i + 1] == 0 and v[i + 2] == 1){
+                ok = 0;
+            }
+        }
+        if(ok) cout << "YES" << endl;
         else cout << "NO" << endl;
     }
     

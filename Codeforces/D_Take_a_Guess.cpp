@@ -5,19 +5,20 @@ using namespace std;
 using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
+void setIO(string s){
+    if (!s.empty()){
+        freopen((s + ".in").c_str(), "r", stdin);
+        freopen((s + ".out").c_str(), "w", stdout);
+    }
+}
 //-------------------------------------------
 
 int32_t main()
 {   
-    opt();
+    opt(); setIO("");
     
-    int n; cin >> n;
-    map<char, int> mp;
-    while(n--){
-        string s; cin >> s;
-        for(auto i : s) mp[i]++;
-    }
-    for(auto i : mp) cout << i.first << " " << i.second << endl;
+    int n, k; cin >> n >> k;
+    
     
     return 0;
 }

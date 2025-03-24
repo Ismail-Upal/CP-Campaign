@@ -12,12 +12,11 @@ int32_t main()
     opt();
     
     tc{
-        string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
+        int n; cin >> n;
+        vector<ll> v(n - 1);
+        for(int i = 0; i < n - 1; i++){
+
         }
-        cout << ans << endl;
     }
     
     return 0;

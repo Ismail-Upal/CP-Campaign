@@ -12,11 +12,14 @@ int32_t main()
     opt();
     
     tc{
+        int n; cin >> n;
         string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
+        int ans = 0, ok = 0;
+        for(int i = sz(s) - 1; i > 0; i--){
+            if(s[i] == '1' and !ok) ans++, ok = 1; 
+            if(s[i] == '0' and s[i - 1] == '1') ans += 2, ok = 1;
         }
+        if(n == 1 and s[0] == '1') ans = 1;
         cout << ans << endl;
     }
     

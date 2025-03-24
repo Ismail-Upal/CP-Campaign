@@ -11,13 +11,13 @@ int32_t main()
 {   
     opt();
     
-    int n; cin >> n;
-    map<char, int> mp;
-    while(n--){
-        string s; cin >> s;
-        for(auto i : s) mp[i]++;
+    string s; cin >> s;
+    int ans = 1, sub = 1;
+    for(int i = 1; i < sz(s); i++){
+        if(s[i] == s[i - 1]) sub++;
+        else ans = max(ans, sub), sub = 1;
     }
-    for(auto i : mp) cout << i.first << " " << i.second << endl;
+    cout << max(ans, sub) << endl;
     
     return 0;
 }

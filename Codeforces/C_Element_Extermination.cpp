@@ -12,12 +12,11 @@ int32_t main()
     opt();
     
     tc{
-        string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
-        }
-        cout << ans << endl;
+        int n; cin >> n;
+        vector<int> v(n);
+        for(int i = 0; i < n; i++) cin >> v[i];
+        if(v[0] < v[n - 1]) cout << "YES" << endl;
+        else cout << "NO" << endl;
     }
     
     return 0;

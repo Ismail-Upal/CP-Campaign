@@ -12,12 +12,20 @@ int32_t main()
     opt();
     
     tc{
-        string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
+        int n; cin >> n;
+        vector<int> v(n), b;
+        for(int i = 0; i < n; i++) cin >> v[i];
+        b = v;
+        int ok = 1;
+        sort(b.begin(), b.end());
+        for(int i = 0; i < n; i++){
+            if(v[i] % 2 != b[i] % 2){
+                ok = 0;
+                break;
+            }
         }
-        cout << ans << endl;
+        if(ok) cout << "YES" << endl;
+        else cout << "NO" << endl;
     }
     
     return 0;

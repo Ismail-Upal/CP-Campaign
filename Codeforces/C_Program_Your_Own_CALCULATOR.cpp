@@ -11,14 +11,12 @@ int32_t main()
 {   
     opt();
     
-    tc{
-        string s; cin >> s;
-        int ans = sz(s);
-        for(int i = 0; i < sz(s) - 1; i++){
-            if(s[i] == s[i + 1]) ans = 1;
-        }
-        cout << ans << endl;
-    }
+    double a, b; char c;
+    cin >> a >> b >> c;
+    if(c == '+') cout << a + b << endl;
+    else if(c == '-') cout << a - b << endl;
+    else if(c == '*') cout << a * b << endl;
+    else cout << fixed << setprecision(6) << (1.0 * a) / b << endl;
     
     return 0;
 }
