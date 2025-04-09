@@ -5,46 +5,36 @@ using namespace std;
 using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
-void setIO(string s){
-    if (!s.empty()){
-        freopen((s + ".in").c_str(), "r", stdin);
-        freopen((s + ".out").c_str(), "w", stdout);
-    }
-}
 //-------------------------------------------
 
 int32_t main()
 {   
-    opt(); setIO("");
+    opt();
     
     tc{
         int n; cin >> n;
-        vector<int> v(n), tmp(n);
+        vector<int> v(n);
         for(int i = 0; i < n; i++) cin >> v[i];
-        for(int i = n - 1; i >= 0; i--){
-            int mn = 0;
-            for(int j = n - 1; j >= i; j--){
-                if(v[j] < v[i]) mn++;
+        int tot_inv = 0;
+        for(int i = 0; i < n ;i++){
+            int x = v[i];
+            for(int j = i; j < n; j ++){
+                if(v[j] < x) tot_inv++;
             }
-            tmp[i] = mn;
         }
-        int mx = *max_element(tmp.begin(), tmp.end());
-        int mn = *min_element(tmp.begin(), tmp.end());
-        int l = 1, r = n - 1;
+        int tmp = tot_inv, l = 0, r = 0;
         for(int i = 0; i < n; i++){
-            if(tmp[i] == mx){
-                l = i + 1;
-                break;
+            int x = v[i], cnt = tot_inv;
+            for(int j = i; j < n; j++){
+                if(v[j] < x) cnt--;
+                else if(v[j] > x) cnt++;
+                if(cnt < tmp){
+                    l = i, r = j;
+                    tmp = cnt;
+                }   
             }
         }
-        for(int i = n - 1; i >= 0; i--){
-            if(v[i] <= v[l]){
-                r = i + 1;
-                break;
-            }
-        }
-        if(mx == mn) l = 1, r = 1;
-        cout << l << " " << r << endl;
+        cout << l + 1 << " " << r + 1 << endl;
     }
     
     return 0;
