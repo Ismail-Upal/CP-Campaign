@@ -12,17 +12,22 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), b(n);
-        set<int> se;
+        int n; cin >> n;
+        vector<ll> v(n);
+        multiset<ll> se;
         for(int i = 0; i < n; i++){
             cin >> v[i];
             se.insert(v[i]);
         }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+        reverse(v.begin(), v.end());
+        ll sum = 0;
+        for(int i = 1; i <= n; i++){
+            ll ans = sum + *se.rbegin();
+            cout << ans << " ";
+            sum += v[i - 1];
+            se.erase(se.find(v[i - 1]));
+        }
+        cout << endl;
     }
     
     return 0;

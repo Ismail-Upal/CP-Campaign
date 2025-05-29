@@ -12,46 +12,29 @@ int32_t main()
     opt();
     
     tc{
-        int n, k; cin >> n >> k;
-        string s; cin >> s;
-        vector<int> b;
-      
-            int sub = 1;
-            for(int i = 1; i < n; i++){
-                if(s[i] == s[i - 1]){
-                    sub ++;
-                }
-                else{
-                    b.push_back(sub); 
-                    sub = 1;
-                }
-            }
-            b.push_back(sub);
-            // for(auto i : b) cout << i << " "; 
-            int mx = *max_element(b.begin(), b.end());
-            if(mx <= 2){
-                cout << mx << endl;
-                continue;
-            }
-            
-        auto ok = [&](int mid){
-            int op = 0;
-            for(int i : b){
-                if(i > mid) op += (i - 1) / mid;
-            }
-            return op <= k;
-        };  
+        int k, n, m; cin >> k >> n >> m;
+        vector<int> v(n), b(m);
+        for(int i = 0; i < n; i++) cin >> v[i];
+        for(int i = 0; i < m; i++) cin >> b[i];
 
-        int l = 1, r = n, ans = mx, mid;
-        while(l <= r){
-            mid = l + (r - l) / 2;
-            if(ok(mid)){
-                ans = mid;
-                r = mid - 1;
-            }
-            else l = mid + 1;
+        vector<int> ans;
+        for(int i = 0, j = 0; i < n or j < m; ){
+            if(i < n and v[i] == 0) ans.push_back(0), i++, k++;
+            else if(j < m and b[j] == 0) ans.push_back(0), j++, k++;
+
+            else if(i < n and v[i] <= b[j] and v[i] <= k) ans.push_back(v[i]), i++;
+            else if(j < m and v[i] >= b[j] and b[j] <= k) ans.push_back(b[j]), j++;
+            else if(i == n and j < m and b[j] <= k) ans.push_back(b[j]), j++;
+            else if(j == m and i < n and v[i] <= k) ans.push_back(v[i]), i++; 
+            else break;
         }
-        cout << ans << endl;
+
+
+        if(sz(ans) != n + m) cout << -1 ;
+        else{
+            for(int i : ans) cout << i << " ";
+        }
+        cout << endl;
     }
     
     return 0;

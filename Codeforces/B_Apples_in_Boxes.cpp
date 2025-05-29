@@ -12,25 +12,20 @@ int32_t main()
     opt();
     
     tc{
-        int n, k; cin >> n >> k;
-        vector<int> v(n);
-        map<int, int> mp;
-        for(int i = 0; i < n; i++){
-            cin >> v[i];
-            mp[v[i]] = i;
-        }
-
+        ll n, k; cin >> n >> k;
+        vector<ll> v(n);
+        for(int i = 0; i < n; i++) cin >> v[i];
+        
         sort(v.begin(), v.end());
-
-        int cnt = 1;
-
-        for(int i = 1; i < n; i++){
-            if(mp[v[i]] != mp[v[i - 1]] + 1) cnt++;
+        ll sum = accumulate(v.begin(), v.end(), 0LL);
+        v[n - 1] --;
+        sort(v.begin(), v.end());
+        
+        if(v[n - 1] - v[0] > k or sum % 2 == 0){
+            cout << "Jerry" << endl;
         }
-
-        cerr << cnt; 
-        if(k >= cnt) cout << "Yes" << endl;
-        else cout << "No" << endl;
+        else cout << "Tom" << endl;
+ 
     }
     
     return 0;

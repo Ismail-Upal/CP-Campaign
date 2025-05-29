@@ -12,22 +12,31 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
+        int n; cin >> n;
         vector<int> v(n);
-        int zro = 0;
-        for(int i = 0; i < n; i++) {
+        map<int, int> mp;
+        for(int i = 0; i < n; i++){
             cin >> v[i];
-            if(v[i] == 0) zro++;
+            mp[v[i]]++;
         }
-        int sum = accumulate(v.begin(), v.end(), 0);
-        if(sum < 100){
-            cout << "NO" << endl;
-            continue;
-        }
-        int nd = sum - 100;
+        
 
-        if(nd >= n - zro) cout << "NO" << endl;
-        else cout << "YES" << endl;
+        int a = 0, b = 0, ok = 0;
+
+        for(int i = 0; i <= 100; i++){
+            if(mp[i]){
+                if(mp[i] >= 2){
+                    if(!ok) b = i + 1;
+                    a = i + 1;
+                }
+                else if(mp[i] == 1){
+                    a = i + 1;
+                    ok = 1;
+                }
+            }
+            else break;
+        }
+        cout << a + b << endl;
     }
     
     return 0;

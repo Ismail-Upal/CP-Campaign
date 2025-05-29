@@ -12,17 +12,17 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), b(n);
-        set<int> se;
-        for(int i = 0; i < n; i++){
-            cin >> v[i];
-            se.insert(v[i]);
-        }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+        int r, c, a, b; cin >> r >> c >> a >> b;
+
+        auto f = [&](int r, int c){
+            ll cnt = 0;
+            while(r > 1) r = (r + 1) / 2, cnt++;
+            while(c > 1) c = (c + 1) / 2, cnt++;
+            return cnt;
+        };
+
+        ll ans = min({f(r, b), f(a, c), f(r, c - b + 1), f(r - a + 1, c)});
+        cout << ans + 1 << endl;
     }
     
     return 0;

@@ -12,17 +12,21 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), b(n);
-        set<int> se;
+        int n; cin >> n;
+        vector<int> v(n);
         for(int i = 0; i < n; i++){
             cin >> v[i];
-            se.insert(v[i]);
+            v[i] = abs(v[i]);
         }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+        int x = v[0];   
+        sort(v.begin(), v.end());
+
+        int idx = lower_bound(v.begin(), v.end(), x) - v.begin();
+        idx++;
+        int d = (n / 2) + 1;
+
+        if(idx <= d) cout << "YES" << endl;
+        else cout << "NO" << endl;
     }
     
     return 0;

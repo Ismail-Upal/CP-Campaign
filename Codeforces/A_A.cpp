@@ -11,13 +11,30 @@ int32_t main()
 {   
     opt();
     
-    string s; cin >> s;
-    int ans = 1, sub = 1;
-    for(int i = 1; i < sz(s); i++){
-        if(s[i] == s[i - 1]) sub++;
-        else ans = max(ans, sub), sub = 1;
+    tc{
+        int n, m; cin >> n >> m;
+        vector<int> v(m);
+        for(int i = 0; i < m; i++) cin >> v[i];
+
+        vector<int> ans(n + 1, -1);
+
+        map<int, int> mp;
+
+        int time = 1, idx = n;
+
+        for(int i = 0; i < m; i++){
+            if(mp.find(v[i]) != mp.end()) time++;
+            else{
+                ans[idx] = time;
+                time++;
+                idx--;
+                mp[v[i]]++;
+                if(idx == 0) break;
+            }
+        }
+        for(int i = 1; i <= n; i++) cout << ans[i] << " ";
+        cout << endl;
     }
-    cout << max(ans, sub) << endl;
     
     return 0;
 }

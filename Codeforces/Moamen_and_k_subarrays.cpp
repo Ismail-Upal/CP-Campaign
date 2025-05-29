@@ -12,17 +12,20 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), b(n);
-        set<int> se;
+        int n, k; cin >> n >> k;
+        vector<int> v(n);
+        map<int, int> mp;
         for(int i = 0; i < n; i++){
-            cin >> v[i];
-            se.insert(v[i]);
+            cin >> v[i]; mp[v[i]] = i;
         }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+
+        sort(v.begin(), v.end());
+        int cnt = 0;
+        for(int i = 0; i < n - 1; i++){
+            if(mp[v[i]] + 1 != mp[v[i + 1]]) cnt++;
+        }
+        if(cnt + 1 <= k) cout << "Yes" << endl;
+        else cout << "No"  << endl;
     }
     
     return 0;

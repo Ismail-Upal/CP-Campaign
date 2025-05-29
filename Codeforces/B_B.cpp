@@ -12,8 +12,25 @@ int32_t main()
     opt();
     
     tc{
-        int a, b; cin >> a >> b;
-        if((a + b) % 2 == 0) cout << "YES" << endl;
+        int n; cin >> n;
+        string s; cin >> s;
+        string t;
+        for(auto c : s){
+            if(c == 'm' or c == 'M'){
+                if(t.back() != 'm') t.push_back('m');
+            }
+            else if(c == 'e' or c == 'E'){
+                if(t.back() != 'e') t.push_back('e');
+            }
+            else if(c == 'o' or c == 'O'){
+                if(t.back() != 'o') t.push_back('o');
+            }
+            else if(c == 'w' or c == 'W'){
+                if(t.back() != 'w') t.push_back('w');
+            }
+            else t.push_back(c);
+        }
+        if(t == "meow") cout << "YES" << endl;
         else cout << "NO" << endl;
     }
     

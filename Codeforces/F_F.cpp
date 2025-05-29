@@ -11,13 +11,21 @@ int32_t main()
 {   
     opt();
     
-    int n; cin >> n;
-    map<char, int> mp;
-    while(n--){
-        string s; cin >> s;
-        for(auto i : s) mp[i]++;
+    tc{
+        int n, m, k; cin >> n >> m >> k;
+        if(m == 0){cout << 0 << endl; continue;}
+        int card = n / k;
+        if(card >= m){
+            cout << m << endl; continue;
+        }
+        
+        int win_jok = card;
+        m -= card;
+        
+        k--;
+        if(((m + k - 1) / k) == card) cout << 0 << endl;
+        else cout << card - (m + k - 1) / k << endl;
     }
-    for(auto i : mp) cout << i.first << " " << i.second << endl;
     
     return 0;
 }

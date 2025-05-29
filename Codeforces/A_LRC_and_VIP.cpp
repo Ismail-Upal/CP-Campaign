@@ -12,17 +12,23 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), b(n);
-        set<int> se;
+        int n; cin >> n;
+        vector<int> v(n);
+        map<int, int> mp;
         for(int i = 0; i < n; i++){
             cin >> v[i];
-            se.insert(v[i]);
+            mp[v[i]]++;
         }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+        if(mp.size() == 1){
+            cout << "No" << endl; continue;
+        }
+        cout << "Yes" << endl;
+        int mx = *max_element(v.begin(), v.end());
+        for(int i = 0; i < n; i++){
+            if(v[i] == mx) cout << 1 << " ";
+            else cout << 2 << " ";
+        }
+        cout << endl;
     }
     
     return 0;

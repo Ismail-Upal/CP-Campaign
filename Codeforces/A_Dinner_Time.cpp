@@ -12,17 +12,12 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
-        vector<int> v(n), b(n);
-        set<int> se;
-        for(int i = 0; i < n; i++){
-            cin >> v[i];
-            se.insert(v[i]);
+        int n, m, p, q; cin >> n >> m >> p >> q;
+        if(n % p == 0){
+            if((n / p) * q == m) cout << "YES" << endl;
+            else cout << "NO" << endl;
         }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+        else cout << "YES" << endl;
     }
     
     return 0;

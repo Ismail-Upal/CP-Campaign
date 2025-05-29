@@ -12,17 +12,23 @@ int32_t main()
     opt();
     
     tc{
-        int n; cin >> n; 
+        int n, k; cin >> n >> k;
         vector<int> v(n), b(n);
-        set<int> se;
+        ll sum = 0;
         for(int i = 0; i < n; i++){
-            cin >> v[i];
-            se.insert(v[i]);
+            cin >> v[i]; 
         }
-        b = v;
-        sort(b.rbegin(), b.rend());
-        if(b == v and sz(se) == n) cout << "NO" << endl;
-        else cout << "YES" << endl;        
+        for(int i = 0; i < n; i++){
+            cin >> b[i]; 
+        }
+        for(int i = 0; i < n; i++){
+            if(i > k) sum += min(v[i], b[i]);
+            else{
+                sum += v[i];
+                sum += b[i];
+            }
+        }
+        cout << sum << endl;
     }
     
     return 0;
