@@ -1,0 +1,1 @@
+{"name":"Local: dsu","url":"d:\\CP Campaign\\EDU\\DSU\\dsu.cpp","tests":[{"id":1750408006245,"input":"5 3\n1 2\n2 3\n4 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP Campaign\\EDU\\DSU\\dsu.cpp","group":"local","local":true}

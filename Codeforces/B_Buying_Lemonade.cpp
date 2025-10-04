@@ -1,41 +1,40 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define opt() ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
-using ll = long long;
-#define endl "\n"
-#define sz(x) (ll)(x).size()
-#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
-//-------------------------------------------
 
-int32_t main()
-{   
-    opt();
+void solve() {
+    int n;
+    long long k;
+    cin >> n >> k;
+    vector<long long> a(n);
     
-    tc{
-        int n, k; cin >> n >> k;
-        vector<int> v(n);
-        for(int i = 0; i < n; i++) cin >> v[i];
-        sort(v.begin(), v.end());
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    
+    
+    sort(a.rbegin(), a.rend());
+    
+    long long total = 0;
+    int p= 0, c=0;
+    for(int i = 0; i < n; i++) {
+        total += a[i];
+        p+=a[i];
+        c++;
+        if(total>k){p--; break;}
+        if(total == k) break;
+    }
+    
+    cout << p << endl;
+}
 
-        ll press = 0, can = 0, cnt = 0;
-        for(int i = 0; i < n; i++){
-            v[i] -= cnt;
-            if(v[i] == 0){
-                press++; continue;
-            }
-            ll porbe = 1LL * v[i] * (n - i);
-            if(can + porbe < k){
-                press += porbe + 1;
-                can += porbe;
-                cnt += v[i];
-            }
-            else{
-                ll nd = k - can;
-                press += nd;
-                break;
-            }
-        }
-        cout << press << endl;
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
     }
     
     return 0;

@@ -1,0 +1,1 @@
+{"name":"Local: power_range","url":"d:\\CP Campaign\\Codeforces\\power_range.cpp","tests":[{"id":1751649212922,"input":"2\n6\n4 3 0 1 2 0\n2\n2 5\n","output":"YES\nNO\n"},{"id":1751649328580,"input":"1\n6\n4 3 0 1 2 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP Campaign\\Codeforces\\power_range.cpp","group":"local","local":true}

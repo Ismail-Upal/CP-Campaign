@@ -1,0 +1,1 @@
+{"name":"Local: string_hashing","url":"d:\\CP Campaign\\CP YKW\\Phase 2\\String\\string_hashing.cpp","tests":[{"id":1739226029206,"input":"ac\nab","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP Campaign\\CP YKW\\Phase 2\\String\\string_hashing.cpp","group":"local","local":true}

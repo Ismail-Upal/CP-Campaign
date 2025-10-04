@@ -1,0 +1,1 @@
+{"name":"Local: possible_string","url":"d:\\CP Campaign\\Codeforces\\possible_string.cpp","tests":[{"id":1751044519306,"input":"3\n2 2 1 0\n1 1 1 1\n1 2 3 2\n","output":"YES\nNO\nYES\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP Campaign\\Codeforces\\possible_string.cpp","group":"local","local":true}
