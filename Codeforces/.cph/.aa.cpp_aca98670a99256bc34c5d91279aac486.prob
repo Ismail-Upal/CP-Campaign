@@ -1,0 +1,1 @@
+{"name":"Local: aa","url":"d:\\CP-Campaign\\Codeforces\\aa.cpp","tests":[{"id":1761064297923,"input":"3\n-2 -4\n0 -8\n8 8","output":""},{"id":1761068964723,"input":"1\n0 -8","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP-Campaign\\Codeforces\\aa.cpp","group":"local","local":true}

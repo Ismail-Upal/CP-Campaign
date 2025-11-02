@@ -18,12 +18,6 @@ int main()
         int op2 = count(s.begin(), s.end(), '1');
         int op3 = count(s.begin(), s.end(), '2');
 
-        if(n == k){
-            for(int i = 0; i < n; i++) cout << "-";
-            cout << endl;
-            continue;
-        }
-
         vector<char> ans(n + 1);
         int i = 1; 
         while(i <= op1){
@@ -34,16 +28,22 @@ int main()
             ans[j] = '-'; j--;
         }
 
-   
-        while(op3 and i <= j){
-            ans[i] = '?'; ans[j] = '?';
-            i++; j--; op3--;
+        if(op3 == j - i + 1){
+            while(i <= j){
+                ans[i] = '-'; 
+                i++;
+            }
         }
-        while(i <= j){
-            ans[i] = '+'; ans[j] = '+';
-            i++; j--;
+        else{
+            while(op3 and i <= j){
+                ans[i] = '?'; ans[j] = '?';
+                i++; j--; op3--;
+            }
+            while(i <= j){
+                ans[i] = '+'; ans[j] = '+';
+                i++; j--;
+            }
         }
-        
 
         for(int i = 1; i <= n; i++) cout << ans[i] ;
         cout << endl;
