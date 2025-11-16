@@ -12,32 +12,30 @@ int main()
     opt();
     
     tc{
-        ll n, x; cin >> n >> x;
-        vector<ll> v(n);
-        ll sum = 0;
-        for(ll i = 0; i < n; i++){
-            cin >> v[i];
-            sum += v[i];
-        }
-        
+        int n, k; cin >> n >> k;
+        vector<int> v(n);
+        for(int i = 0; i < n; i++) cin >> v[i];
         sort(v.begin(), v.end());
-        vector<int> a;
 
-        ll s = 0, ans = 0;
-        for(int i = 0; i < n; i++){
-            if(s + v.back() >= x){
-                ans += sum;
-                s = i;
-                a.push_back(v.back());
-                break;
+        ll cnt = 0, sum = 0, i = 0, j = n - 1, ans = 0;
+        vector<ll> res;
+        while(i <= j){
+            ll dif = (sum + v[j]) / k;
+            if(dif > cnt){
+                ans += v[j];
+                sum += v[j]; 
+                cnt = dif;
+                res.push_back(v[j]);
+                j--;
             }
-            s += v[i];
-            sum -= v[i];
-            a.push_back(v[i]);
+            else{
+                sum += v[i];
+                res.push_back(v[i]);
+                i++;
+            }
         }
         cout << ans << endl;
-        for(int j = s; j < n - 1; j++) a.push_back(v[j]);
-        for(auto i : a) cout << i << " " ;
+        for(auto i : res) cout << i << " " ;
         cout << endl;
     }
     
