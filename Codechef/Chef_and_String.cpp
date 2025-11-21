@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+//-------------------------------------------
+
+int main()
+{   
+    opt();
+    
+    tc{
+        ll n, k; cin >> n >> k;
+        string s; cin >> s;
+        ll ans = n * k - 1;
+        int allI = 1;
+        string t;
+        for(auto i : s){
+            if(i != 'I') allI = 0, t += i;
+        }
+        if(allI){
+            cout << ans << endl; continue;
+        }
+        ll cnt = 0;
+        for(int i = 0; i < sz(t) - 1; i++){
+            if(t[i] == t[i + 1]) cnt++;
+        }
+        ans = k * cnt;
+        if(t[0] != t.back()) ans -= k - 1;
+
+        cout << ans << endl;
+    }
+    
+    return 0;
+}
