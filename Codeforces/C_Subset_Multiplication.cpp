@@ -6,22 +6,29 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-
-int  main()
+ll lcm(ll a, ll b){
+    return (a * b) / __gcd(a, b);
+}
+int main()
 {   
     opt();
     
     tc{
         ll n; cin >> n;
         vector<ll> v(n);
-        ll gcd = 1, lcm = 1, mul = 1;
         for(ll i = 0; i < n; i++){
             cin >> v[i];
-            mul *= v[i];
-            gcd = __gcd(gcd, v[i]);
-            lcm = mul / gcd;
         }
-        cout << lcm << endl;
+        ll ans = 1;
+        for(ll i = 1; i < n; i++){
+            if(v[i] % v[i - 1]){
+                ll g = __gcd(v[i], v[i - 1]);
+                ll x = v[i - 1] / g;
+                ans = lcm(x, ans);
+            }
+        }
+
+        cout << ans << endl;
     }
     
     return 0;
