@@ -12,11 +12,17 @@ int main()
     opt();
     
     tc{
-        int n; cin >> n;
-        vector<int> v(2 * n + 3);
-        for(int i = 1; i <= 2 * n; i++) cin >> v[i];
-
-        
+        int n, k; cin >> n >> k;
+        vector<int> v(n);
+        for(int i = 0; i < n; i++) cin >> v[i];
+        map<int, int> mp;
+        mp[0]++;
+        int ans = 0;
+        for(int i = 0; i < n; i++){
+            mp[v[i]]++;
+            if(!mp[v[i] - 1]) ans = max(ans, n - v[i] + 1);
+        }
+        cout << (ans + k - 1) / k << endl;
     }
     
     return 0;
