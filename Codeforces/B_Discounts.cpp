@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+#define tc ll t; cin >> t; for (ll _ = 1; _ <= t; _++)
 using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
@@ -12,31 +12,22 @@ int main()
     opt();
     
     tc{
-        int n, m; cin >> n >> m;
-        vector<int> a(n), b(m);
-        ll sum = 0;
-        for(int i = 0; i < n; i++){
-            cin >> a[i];
-            sum += a[i];
-        }
-        for(int i = 0; i < m; i++) cin >> b[i];
+        ll n, k; cin >> n >> k;
+        vector<ll> a(n + 1), b(k + 1);
+        for(ll i = 1; i <= n; i++) cin >> a[i];
+        for(ll i = 1; i <= k; i++) cin >> b[i];
 
-        sort(a.begin(), a.end());
-        sort(b.rbegin(), b.rend());
+        sort(a.begin() + 1, a.end(), greater<ll>());
+        sort(b.begin() + 1, b.end());
+        
+        ll ans = accumulate(a.begin() + 1, a.end(), 0LL);
 
-        int i = 0, j = 0, free = 0;
-
-        while(i < n and j < m){
-            if(b[j] != 1){
-                free += a[i];
-            }
-            else if(b[j] == 1){
-                free += a[i];
-            }
-            i += b[j]; j++;
+        for(ll i = 1, j = 0; i <= k; i++){
+            j += b[i];
+            if(j <= n) ans -= a[j];
         }
 
-        cout << sum - free << endl;
+        cout << ans << endl;
     }
     
     return 0;

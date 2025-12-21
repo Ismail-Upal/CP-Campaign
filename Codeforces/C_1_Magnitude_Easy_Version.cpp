@@ -6,16 +6,22 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-
+ 
 int main()
 {   
     opt();
     
     tc{
         int n; cin >> n;
-        vector<ll> v(n);
-        for(int i = 0; i < n; i++) cin >> v[i];
+        vector<int> v(n + 2);
+        for(int i = 1; i <= n; i++) cin >> v[i];
         
+        ll ans = 0;
+        for(int i = 1; i <= n; i++){
+            if(ans + v[i] < 0) ans += v[i];
+            else ans = abs(ans) + v[i];
+        }
+        cout << abs(ans) << endl;
     }
     
     return 0;

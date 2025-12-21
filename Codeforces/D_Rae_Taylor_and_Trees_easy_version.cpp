@@ -15,6 +15,7 @@ int main()
         int n; cin >> n;
         vector<int> v(n);
         for(int i = 0; i < n; i++) cin >> v[i];
+<<<<<<< HEAD
         int ok = 1;
 
         vector<int> preMin(n), sufMax(n);
@@ -39,3 +40,10 @@ int main()
 }
 
 
+=======
+        
+    }
+    
+    return 0;
+}
+>>>>>>> c70e80aaae5897c880a210040f1b4752f6d043b2

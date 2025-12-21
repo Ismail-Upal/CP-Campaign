@@ -20,7 +20,7 @@ int main()
         for(int i = 1; i <= n; i++) A ^= a[i];
         for(int i = 1; i <= n; i++) B ^= b[i];
 
-        
+       
             int Anibe = 0;
             for(int i = 1; i <= n; i += 2){
                 if(a[i] == 0 and b[i] == 1) Anibe++;

@@ -14,21 +14,24 @@ int main()
     tc{
         ll n, k; cin >> n >> k;
         string s; cin >> s;
-        ll ans = n * k - 1;
-        int allI = 1;
-        string t;
+        char pre = 'a';
         for(auto i : s){
-            if(i != 'I') allI = 0, t += i;
+            if(i != 'I'){
+                pre = i; break;
+            }
         }
-        if(allI){
-            cout << ans << endl; continue;
+        for(auto &i : s){
+            if(i == 'I') i = pre;
+            else pre = i; 
         }
+
         ll cnt = 0;
-        for(int i = 0; i < sz(t) - 1; i++){
-            if(t[i] == t[i + 1]) cnt++;
+        for(int i = 0; i < n - 1; i++){
+            if(s[i] == s[i + 1]) cnt++;
         }
-        ans = k * cnt;
-        if(t[0] != t.back()) ans -= k - 1;
+
+        ll ans = cnt * k;
+        if(s[0] == s[n - 1]) ans += k - 1;
 
         cout << ans << endl;
     }
