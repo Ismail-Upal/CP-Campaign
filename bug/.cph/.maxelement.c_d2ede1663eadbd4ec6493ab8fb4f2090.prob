@@ -1,0 +1,1 @@
+{"name":"Local: maxelement","url":"d:\\CP-Campaign\\bug\\maxelement.c","tests":[{"id":1766762420431,"input":"5\n7 6 9 0 3","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP-Campaign\\bug\\maxelement.c","group":"local","local":true}

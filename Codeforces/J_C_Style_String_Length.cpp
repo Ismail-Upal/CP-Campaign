@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+//-------------------------------------------
+
+int main()
+{   
+    opt();
+    
+    tc{
+        string s; cin >> s;
+        int ans = 0, cnt = 0;
+        for(int i = 0; i < sz(s); i++){
+            if(s[i] == '\\'){
+                cnt++; 
+                if(cnt % 2 == 0) ans++, cnt = 0;
+            }
+            else if(s[i] == '0'){
+                if(cnt > 0){
+                    cnt = 0; break;
+                }
+                else ans++;
+            }
+
+        }
+        if(cnt % 2) ans = -1;
+        else ans += cnt / 2;
+
+        if(ans == -1) cout << "INVALID" << endl;
+        else cout << ans << endl;
+    }
+    
+    return 0;
+}

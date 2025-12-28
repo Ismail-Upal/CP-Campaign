@@ -12,24 +12,21 @@ int main()
     opt();
     
     tc{
-        int n, m; cin >> n >> m;
-        vector<int> a(30), b(30);
-        for(int i = 0; i < 30; i++){
-            a[i] = i;
-        }
-        for(int i = 0; i < 30; i++) cout << a[i] << " ";
-            cout << endl; 
-        while(m--){
-            for(int i = 0; i < 30; i++){
-                if(i == 0) b[i] = a[i] | a[i + 1];
-                else if(i == 29) b[i] = a[i] | a[i - 1];
-                else b[i] = a[i - 1] | a[i + 1] | a[i];
-            }
+        ll n, m; cin >> n >> m;
+        ll l = max(0LL, n - m), r = n + m;
 
-            a = b;
-            for(int i = 0; i < 30; i++) cout << a[i] << " ";
-            cout << endl; 
+        ll ans = l | n | r;
+
+        for(int i = 0; i < 32; i++){
+            int len = (1 << i);
+            if(!(l & (1 << i))and !(r & (1 << i))){
+                if((l / len) != (r / len)){
+                    ans |= (1 << i);
+                }
+            }
         }
+
+        cout << ans << endl;
     }
     
     return 0;
