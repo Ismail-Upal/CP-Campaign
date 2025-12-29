@@ -1,0 +1,1 @@
+{"name":"Local: reversearray","url":"d:\\CP-Campaign\\bug\\reversearray.c","tests":[{"id":1766759628894,"input":"5\n5 2 7 4 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP-Campaign\\bug\\reversearray.c","group":"local","local":true}

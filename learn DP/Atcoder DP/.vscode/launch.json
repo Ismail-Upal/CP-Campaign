@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
+<<<<<<< HEAD
       "cwd": "d:/Ismail Upal/CP-Campaign/learn DP/Atcoder DP",
       "program": "d:/Ismail Upal/CP-Campaign/learn DP/Atcoder DP/build/Debug/outDebug",
+=======
+      "cwd": "d:/CP-Campaign/learn DP/Atcoder DP",
+      "program": "d:/CP-Campaign/learn DP/Atcoder DP/build/Debug/outDebug",
+>>>>>>> ffb9db97799caa9fe3df67c291817af38881d14f
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
