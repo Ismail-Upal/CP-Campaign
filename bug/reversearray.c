@@ -28,5 +28,5 @@ int main() {
     return 0;
 }
 
-for christmas i got you your favourite thing..
-disappointment
+// for christmas i got you your favourite thing..
+// disappointment
