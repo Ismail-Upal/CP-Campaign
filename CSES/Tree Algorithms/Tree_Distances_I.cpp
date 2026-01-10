@@ -8,19 +8,18 @@ using ll = long long;
 //-------------------------------------------
 const int N = 2e5 + 5;
 vector<int> g[N];
-int dp[N][2];
+int dep[N];
+int far1, far2, mx;
 
-void dfs(int u, int p){
+void dfs1(int u, int p){
     for(auto v : g[u]){
         if(v != p){
-            dfs(v, u);
-            dp[u][0] += max(dp[v][0], dp[v][1]);
-        }
-    }
-
-    for(auto v : g[u]){
-        if(v != p){
-            dp[u][1] = max(dp[u][1], 1 + dp[v][0] + dp[u][0] - max(dp[v][0], dp[v][1])); 
+            dep[v] = dep[u] + 1;
+            if(dep[v] > mx){
+                mx = dep[v];
+                far1 = v;
+            }
+            dfs1(v, u);
         }
     }
 }
@@ -35,8 +34,8 @@ int main()
         g[v].push_back(u);
     }
 
-    dfs(1, 0);
-    cout << max(dp[1][1], dp[1][0]);
-    
+    dfs1(1, 0);
+    memset(dep, 0, sizeof dep);
+
     return 0;
 }

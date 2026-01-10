@@ -1,13 +1,7 @@
 {
   "files.associations": {
     "iostream": "cpp",
-    "deque": "cpp",
-    "string": "cpp",
-    "vector": "cpp",
-    "array": "cpp",
-    "list": "cpp",
-    "string_view": "cpp",
-    "forward_list": "cpp"
+    "ostream": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

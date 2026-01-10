@@ -1,0 +1,1 @@
+{"name":"Local: a","url":"d:\\stress testing\\a.cpp","tests":[{"id":1764608976568,"input":"10 901","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\stress testing\\a.cpp","group":"local","local":true}

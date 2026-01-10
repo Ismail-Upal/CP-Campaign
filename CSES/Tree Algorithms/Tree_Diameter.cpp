@@ -6,21 +6,30 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-const int N = 2e5 + 5;
+const int N = 2e5 + 3;
 vector<int> g[N];
-int dp[N][2];
+int depth[N];
+int node, mx, ans;
 
-void dfs(int u, int p){
+void dfs1(int u, int p){
+
     for(auto v : g[u]){
         if(v != p){
-            dfs(v, u);
-            dp[u][0] += max(dp[v][0], dp[v][1]);
+            depth[v] = depth[u] + 1;
+            if(depth[v] > mx){
+                mx = depth[v];
+                node = v;
+            }
+            dfs1(v, u);
         }
     }
-
+}
+void dfs2(int u, int p){
     for(auto v : g[u]){
         if(v != p){
-            dp[u][1] = max(dp[u][1], 1 + dp[v][0] + dp[u][0] - max(dp[v][0], dp[v][1])); 
+            depth[v] = depth[u] + 1;
+            ans = max(ans, depth[v]);
+            dfs2(v, u);
         }
     }
 }
@@ -35,8 +44,11 @@ int main()
         g[v].push_back(u);
     }
 
-    dfs(1, 0);
-    cout << max(dp[1][1], dp[1][0]);
+    dfs1(1, 0);
+    memset(depth, 0, sizeof depth);
+    dfs2(node, 0);
+
+    cout << ans << endl;
     
     return 0;
 }

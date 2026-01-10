@@ -7,17 +7,20 @@ using ll = long long;
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
 const int N = 2e5 + 3;
-vector<int> g[N], dis(N);
-bool vis[N];
+vector<vector<int>> g(N);
+vector<bool> vis(N);
+vector<int> dis(N);
 
-void dfs(int u){
+int dfs(int u){
     vis[u] = 1;
+    dis[u] = 1;
+    int node = 0;
     for(auto v : g[u]){
         if(!vis[v]){
-            dfs(v);
-            dis[u] += 1 + dis[v];
+            node += dfs(v) + 1;
         }
     }
+    return dis[u] = node;
 }
 
 int main()
@@ -26,11 +29,12 @@ int main()
     
     int n; cin >> n;
     for(int i = 2; i <= n; i++){
-        int u; cin >> u;
-        g[i].push_back(u);
-        g[u].push_back(i);
+        int v; cin >> v;
+        g[v].push_back(i);
+        g[i].push_back(v);
     }
     dfs(1);
+
     for(int i = 1; i <= n; i++) cout << dis[i] << " " ;
     
     return 0;
