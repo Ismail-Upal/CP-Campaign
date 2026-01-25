@@ -1,29 +1,44 @@
 #include<bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
-using namespace __gnu_pbds;
-template<typename T> using pbds=tree<T,null_type,less_equal<T>,rb_tree_tag,tree_order_statistics_node_update>;
-//p.order_of_key(x), p.find_by_order(idx)
-#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define ll long long
-#define dl double
-#define endl "\n"
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
 #define sz(x) (ll)(x).size()
-#define Y cout << "YES" << endl
-#define N cout << "NO" << endl
-#define tc int t;cin>>t;while(t--)
-void solve(){
-    int n, k ; cin>>n>>k;
-    vector<int>v(n);
-    for(int i=0;i<n; i++)cin>>v[i];
-    sort(v.begin(), v.end());
-}
+//-------------------------------------------
+
 int main()
-{
-    optimize();
+{   
+    opt();
+    
     tc{
-        solve();
+        ll n, k; cin >> n >> k;
+        vector<ll> v(n + 1);
+        for(ll i = 1; i <= n; i++) cin >> v[i];
+        
+        map<ll, ll> mp;
+        for(ll i = 1; i <= n; i++){
+            mp[v[i] % (2 * k)]++;
+            mp[(v[i] % (2 * k)) + k]--;
+        }
+
+        for(ll i = 1; i < 4 * k; i++){
+            mp[i] += mp[i - 1];
+        }
+        for(ll i = 2 * k; i < 4 * k; i++){
+            mp[i % (2 * k)] += mp[i];
+        }
+        
+        
+        ll mx = *max_element(v.begin(), v.end());
+        ll ans = -1;
+        for(ll i = mx; i < mx + k; i++){
+            if(mp[i % (2 * k)] == n){
+                ans = i; break;
+            }
+        }
+        cout << ans << endl;
     }
+    
     return 0;
 }

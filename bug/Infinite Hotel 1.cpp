@@ -2,34 +2,34 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-
-    booked[n];
-
-    for (int i = 1; i <= n; i++) {
-        booked[i] = false;
-    }
-
-
-    for (int guest = 1; guest < n; guest++) {
-        if (booked[guest] == false){
-            for (int room = 1; room <= n; room++) {
-                if (room % guest == 0) {
+    
+        int N;
+        cin >> N;
+        
+        bool booked[N];
+        
+        booked[1] = true;           // Room 1 is permanently blocked. No one can stay
+        
+        for (int guest = 2; guest <= N; ++guest) {
+            if (booked[guest] != true) {
+                // Guest stays in room 'guest'
+                booked[guest] = false;
+                
+                // he also Books every multiple: 2*guest, 3*guest, ... 
+                for (int room = 2 * guest; room <= N; room += guest) {
                     booked[room] = true;
                 }
             }
         }
-    }
-
+        
+        // Now check if room N is still free when guest N arrives
+        if (booked[N] == true) {
+            cout << "No\n";
+        } else {
+            cout << "Yes\n";
+        }
     
-    if (booked[n] == false){
-        cout << "No\n";
-    }
-    else{
-        cout << "Yes\n";
-    }
-
+    
     return 0;
 }
 

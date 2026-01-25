@@ -6,16 +6,28 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-
+bool cmp(pair<ll, ll> a, pair<ll, ll> b){
+    if(a.first != b.first) return a.first < b.first;
+    else return a.second > b.second;
+}
 int main()
 {   
     opt();
     
     int n; cin >> n;
-    vector<pair<int, int>> v(n);
-    for(int i = 0; i < n; i++){
-        int a, b; cin >> a
+    vector<pair<ll, ll>> v(n);
+    for(auto &[i, j] : v) cin >> i >> j;
+
+    sort(v.begin(), v.end(), cmp);
+
+    vector<ll> lis;
+    for(auto [a, b] : v){
+        auto lo = lower_bound(lis.begin(), lis.end(), b);
+
+        if(lo == lis.end()) lis.push_back(b);
+        else *lo = b;
     }
+    cout << sz(lis) ;
     
     return 0;
 }

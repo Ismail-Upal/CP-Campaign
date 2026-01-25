@@ -21,10 +21,3 @@ int main() {
     return 0;
 }
 
-// upal has come from varsity . his friend call him to 
-// to go for walking . upal checks his wallet
-// and says, "tk nai re. koto ache ekn . 142 tk"
-// his little sister heard and says, "tumar kache 
-// achd 1 .. 4 .. 2 .. sob tk ach!!e"
-// how much money upal has according to his little 
-// sister.

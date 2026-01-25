@@ -1,32 +1,16 @@
-#include <iostream>
+
+#include <bits/stdc++.h>
 using namespace std;
-using ll =long long;
-ll Josephus(ll N, ll k)
-{
+const long long mod = 1e9+7;
 
-    // Initialize variables i and ans with 1 and 0
-    // respectively.
+int main() {
+    long long a, b;
+    cin >> a >> b;
+    
 
-    ll i = 1, ans = 0;
+    long long ans =  (((a % mod) - (b % mod) + mod) % mod);
 
-    // Run a while loop till i <= N
+    cout << ans;
 
-    while (i <= N) {
-
-        // Update the Value of ans and Increment i by 1
-        ans = (ans + k) % i;
-        i++;
-    }
-
-    // Return required answer
-    return ans + 1;
-}
-
-// main function
-int main()
-{
-
-    long long N, k; cin >> N >> k;
-    cout << Josephus(N, k) << endl;
     return 0;
 }
