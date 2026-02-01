@@ -7,26 +7,21 @@ using ll = long long;
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
 
-int main()
+int32_t main()
 {   
     opt();
     
     tc{
         int n; cin >> n;
-        vector<int> v(n + 1);
-        map<int, int> mp;
-        for(int i = 1; i <= n; i++){
-            cin >> v[i];
-            mp[v[i]] = i;
+        vector<int> v(n);
+        for(int i = 0; i < n; i++) cin >> v[i];
+        int od = 0, ev = 0;
+        for(int i = 0; i < n; i++){
+            if(v[i] % 2) od++;
+            else ev++;
         }
-        sort(v.begin() + 1, v.end());
-
-        int ok = 1;
-        for(int i = 1; i < n; i++){
-            if(mp[v[i]] % 2 == mp[v[i + 1]] % 2) ok = 0;
-        }
-
-        if(ok) cout << "YES" << endl;
+        if(od % 2 == 0) cout << "YES" << endl;
+        else if(od == 0 and ev > 0) cout << "YES" << endl;
         else cout << "NO" << endl;
     }
     

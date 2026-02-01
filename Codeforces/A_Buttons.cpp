@@ -1,29 +1,22 @@
-//https://atcoder.jp/contests/abc124/tasks/abc124_a
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define dl double
-#define endl "\n"
-#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-int main()
-{
-    optimize();
-    int a,b; cin>>a>>b;
-    int ans=0;
-    if(a>=b){
-        ans+=a;
-        a--;
-        if(a>=b){
-            ans+=a;
-        }
-        else ans+=b;
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+//-------------------------------------------
+
+int32_t main()
+{   
+    opt();
+    
+    tc{
+        int a, b, c; cin >> a >> b >> c;
+        a += c % 2;
+        if(a > b) cout << "First" << endl;
+        else cout << "Second" << endl;
     }
-    else{
-        ans+=b;
-        b--;
-        if(b>=a)ans+=b;
-        else ans+=a;
-    }
-    cout<<ans;
+    
     return 0;
 }

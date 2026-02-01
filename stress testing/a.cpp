@@ -1,14 +1,33 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-const long long mod = 1e9+7;
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+//-------------------------------------------
 
-int main() {
-    long long a, b;
-    cin >> a >> b;
+int main()
+{   
+    opt();
+    
  
-    long long ans =  (a - b) % mod;
-
-    cout << ans;
-
+        int n; cin >> n;
+        vector<int> v(n + 1);
+        for(int i = 1; i <= n; i++) cin >> v[i];
+        int i = 1, j = n, x = n;
+        while(v[i] == x) i++, x--;
+        while(v[j] != x) j--;
+        
+        if(i < j){
+            while(i < j){
+                swap(v[i], v[j]);
+                i++, j--;
+            }
+        }
+        for(int i = 1; i <= n; i++) cout << v[i] << " " ;
+        cout << endl;
+   
+    
     return 0;
 }

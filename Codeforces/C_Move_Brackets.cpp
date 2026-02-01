@@ -1,37 +1,31 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long
-#define dl double
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+using ll = long long;
 #define endl "\n"
-#define Y cout << "YES" << endl
-#define N cout << "NO" << endl
+#define sz(x) (ll)(x).size()
 #define tc int t;cin>>t;while(t--)
-#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-int main()
-{
-    optimize();
+//-------------------------------------------
+ 
+int32_t main()
+{   
+    opt();
+ 
     tc{
-        int n; cin>>n;
-        
-        string s;
-        cin>>s;
-        int ans=0;
-        int i=0, o=0;
-        while(i<n){
-            
-            if(s[i]=='('){
+        int n; cin >> n;
+        string s; cin >> s;
+        int o = 0, c = 0;
+        for(char i : s){
+            if(i=='('){
                 o++;
             }
-            else if(s[i]==')'){
-                if(o>0)o--;
-                else{
-                    ans++;
-                }
+            else{
+                if(o > 0) o--;
+                else c++;
             }
-
-            i++;
-        } 
-        cout<<ans<<endl;
+        }
+        cout << (o+c) / 2 << endl;
     }
+    
     return 0;
 }
