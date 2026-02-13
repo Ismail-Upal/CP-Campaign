@@ -12,15 +12,17 @@ int main()
     opt();
     
     tc{
-        ll b, g, x, y, n; cin >> b >> g >> x >> y >> n;
-        if(x + y > n){
-            cout << -1 << endl;
-            continue;
+        ll b, g, x, y, n; 
+        cin >> b >> g >> x >> y >> n;
+
+        if(x > b or y > g or x + y > n){
+            cout << -1 << endl; continue;
         }
+
         ll mxb = n - y, mxg = n - x;
 
         ll op1 = (b + mxb - 1) / mxb;
-        ll op2 = (g + mxg - 1) / mxg;
+        ll op2 = (b + mxg - 1) / mxg;
         ll op3 = (b + g + n - 1) / n;
 
         cout << max({op1, op2, op3}) << endl;

@@ -11,11 +11,11 @@ int main()
 {   
     opt();
     
-    
+    tc{
         ll n, k; cin >> n >> k;
         vector<ll> v(n);
         for(ll i = 0; i < n; i++) cin >> v[i];
-        sort(v.begin(), v.end());
+        
         map<ll, ll> mp;
         
         ll i = 0, j = 1, ans = 0;
@@ -32,7 +32,7 @@ int main()
         }
 
         cout << ans << endl;
-    
+    }
     
     return 0;
 }
