@@ -6,33 +6,16 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-ll sum(ll n){
-    ll ans = 0;
-    while(n > 0){
-        ans += n % 10;
-        n /= 10;
-    }
-    return ans;
-}
+
 int main()
 {   
     opt();
     
-    
-<<<<<<< HEAD
-        ll n; cin >> n;
-        if(n % 9 == 0) cout << 10 << endl;
-        else cout << 0 << endl;
-
-        // for(int i = 1; i <= n; i++){
-        //     cout << i << "  " << i - sum(i) << endl;
-        // }
- 
-=======
+    tc{
         ll n, k; cin >> n >> k;
         vector<ll> v(n);
         for(ll i = 0; i < n; i++) cin >> v[i];
-        sort(v.begin(), v.end());
+        
         map<ll, ll> mp;
         
         ll i = 0, j = 1, ans = 0;
@@ -49,8 +32,7 @@ int main()
         }
 
         cout << ans << endl;
-    
->>>>>>> e5493e5ffd4f1651dee823805fd3a5fac07b9b55
+    }
     
     return 0;
 }
