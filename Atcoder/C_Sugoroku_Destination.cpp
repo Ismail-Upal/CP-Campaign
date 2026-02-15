@@ -6,27 +6,22 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-ll sum(ll n){
-    ll ans = 0;
-    while(n > 0){
-        ans += n % 10;
-        n /= 10;
-    }
-    return ans;
-}
+
 int main()
 {   
     opt();
     
-    
-        ll n; cin >> n;
-        if(n % 9 == 0) cout << 10 << endl;
-        else cout << 0 << endl;
+    int n; cin >> n;
+    vector<int> v(n + 1), ans(n + 1);
+    for(int i = 1; i <= n; i++){
+        cin >> v[i];
+        if(i == v[i]) ans[i] = i;
+    }
+    for(int i = n; i >= 1; i--){
+        ans[i] = ans[v[i]];
+    }
 
-        // for(int i = 1; i <= n; i++){
-        //     cout << i << "  " << i - sum(i) << endl;
-        // }
- 
+    for(int i = 1; i <= n; i++) cout << ans[i] << " ";
     
     return 0;
 }

@@ -11,19 +11,20 @@ int main()
 {   
     opt();
     
-    ll n; cin >> n;
-    ll x = 0, d = 1;
-    for(int i = 0; i < n; i++){
-        d *= 2;
+    tc{
+        ll p, q; cin >> p >> q;
 
-        if((x + (ll)pow(10, i)) % d == 0){
-            x = x + (ll)pow(10, i);
+        if(p >= q){
+            cout << "Alice" << endl;
+            continue;
         }
-        else if((x + (ll)pow(10, i) * 2) % d == 0){
-            x = x + (ll)pow(10, i) * 2;
-        }
+        
+        ll x = 2 * (q - p);
+        ll y = x + (x / 2);
+        // cout << x << " " << y ;
+        if(x >= 2 and y >= 3 and x <= p and y <= q and p - x == q - y) cout << "Bob" << endl;
+        else cout << "Alice" << endl;
     }
-    cout << x;
     
     return 0;
 }

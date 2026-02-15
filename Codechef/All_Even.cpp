@@ -6,27 +6,22 @@ using ll = long long;
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
-ll sum(ll n){
-    ll ans = 0;
-    while(n > 0){
-        ans += n % 10;
-        n /= 10;
-    }
-    return ans;
-}
+
 int main()
 {   
     opt();
     
-    
-        ll n; cin >> n;
-        if(n % 9 == 0) cout << 10 << endl;
-        else cout << 0 << endl;
-
-        // for(int i = 1; i <= n; i++){
-        //     cout << i << "  " << i - sum(i) << endl;
-        // }
- 
+    tc{
+        int n; cin >> n;
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            int x; cin >> x; 
+            sum += x;
+        }
+        if(sum % 2) cout << "No";
+        else cout << "Yes";
+        cout << endl;
+    }
     
     return 0;
 }

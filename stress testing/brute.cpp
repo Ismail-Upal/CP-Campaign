@@ -1,32 +1,40 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
-#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
-using ll = long long;
-#define endl '\n'
-#define sz(x) (ll)(x).size()
-//-------------------------------------------
 
-int main()
-{   
-    opt();
+// Function to calculate sum of digits
+long long digit_sum(long long n) {
+    long long sum = 0;
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
+}
+
+void solve() {
+    long long x;
+    cin >> x;
     
-
-        int n; cin >> n;
-        vector<int> v(n + 1);
-        for(int i = 1; i <= n; i++) cin >> v[i];
-        int i = 1, j = n, x = n;
-        while(i <= n and v[i] == x) i++, x--;
-        while(i >= 1 and v[j] != x) j--;
-        
-        if(i < j){
-            while(i < j){
-                swap(v[i], v[j]);
-                i++, j--;
-            }
+    int ans = 0;
+    // We only need to check y in the range [x, x + 100]
+    // because d(y) cannot exceed 90 for numbers around 10^9.
+    for (long long y = x; y <= x + 100; ++y) {
+        if (y - digit_sum(y) == x) {
+            ans++;
         }
-        for(int i = 1; i <= n; i++) cout << v[i] << " " ;
-        cout << endl;
+    }
+    
+    cout << ans << endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    
+        solve();
     
     
     return 0;

@@ -18,15 +18,14 @@ int main()
 {   
     opt();
     
-    
+    tc{
         ll n; cin >> n;
-        if(n % 9 == 0) cout << 10 << endl;
-        else cout << 0 << endl;
-
-        // for(int i = 1; i <= n; i++){
-        //     cout << i << "  " << i - sum(i) << endl;
-        // }
- 
+        int ans = 0;
+        for(ll i = n + 1; i <= n + 100; i++){
+            if(i - sum(i) == n) ans++;
+        }
+        cout << ans << endl;
+    }
     
     return 0;
 }
