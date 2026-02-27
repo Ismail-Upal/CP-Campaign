@@ -1,0 +1,1 @@
+{"name":"Local: And and Or","url":"d:\\CP-Campaign\\Repovive\\And and Or.cpp","tests":[{"id":1771367170034,"input":"3\n2\n5 2\n4\n7 0 1 6\n7\n3 5 6 1 0 2 7","output":"0 7\n0 0 7 7\n0 0 0 3 7 7 7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP-Campaign\\Repovive\\And and Or.cpp","group":"local","local":true}

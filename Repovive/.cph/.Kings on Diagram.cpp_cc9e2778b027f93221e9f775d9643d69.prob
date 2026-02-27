@@ -1,0 +1,1 @@
+{"name":"Local: Kings on Diagram","url":"d:\\CP-Campaign\\Repovive\\Kings on Diagram.cpp","tests":[{"id":1771371213387,"input":"2\n3\nK..\n.KK\n...\n5\nK....\nK....\n..K.K\n.....\n...K.","output":"1\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP-Campaign\\Repovive\\Kings on Diagram.cpp","group":"local","local":true}

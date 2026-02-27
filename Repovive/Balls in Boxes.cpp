@@ -3,7 +3,6 @@ using namespace std;
 #define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 #define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
 using ll = long long;
-#define endl '\n'
 #define sz(x) (ll)(x).size()
 //-------------------------------------------
 
@@ -13,16 +12,23 @@ int main()
     
     tc{
         int n; cin >> n;
-        vector<int> v(n);
-        for(int i = 0; i < n; i++) cin >> v[i];
+        vector<pair<ll, ll>> v(n);
 
-        int ans = 0;
-
-        for(int i = 1; i < n; i++){
-            if(v[i] == v[i - 1]) ans++, i++;
-            else if(v[i] + v[i - 1] == 7) ans++, i++;
+        ll suma = 0, sumb = 0;
+        for(int i = 0; i < n; i++){
+            cin >> v[i].first;
+            cin >> v[i].second;
+            suma += v[i].first;
+            sumb += v[i].second;
         }
-        // for(int i : v) cout << i << " ";
+
+        ll ans = 1e18;
+
+        for(auto [a, b] : v){
+            ans = min(ans, suma - a + b);
+            ans = min(ans, sumb - b + a);
+        }
+
         cout << ans << endl;
     }
     

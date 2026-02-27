@@ -13,45 +13,25 @@ int main()
     
     tc{
         int n; cin >> n;
-        ll sum = 0;
-        for(int i = 1; i <= n; i++){
-            ll x; cin >> x;
-            if(i == 1) sum =
-        }
-        
-        vector<ll> v(n + 1);
-        int i = 1, j = n;
-        ll s = (n - 1) * n / 2;
-        while(i <= j){
-            v[i] = s;
-            v[j] = s;
-            i++; j--;
-            s -= j;
-            s += i - 1;
-        }
-        vector<ll> suff(n + 3, 0);
-        for(int i = n; i >= 1; i--){
-            suff[i] = suff[i + 1] + v[i];
+        vector<ll> f(n + 1), v(n + 1);
+
+        for(int i = 1; i <= n; i++) cin >> f[i];
+
+        for(int i = 2; i < n; i++){
+            v[i] = (f[i] - f[i - 1] + f[i] - f[i + 1]) / -2;
         }
 
-        vector<ll> ans(n + 1);
-        for(int i = 1; i <= n; i++){
-            ll nd;
-            if(sum >= 0) nd = (sum - suff[i + 1]) / v[i];
-            else nd = (sum + suff[i + 1]) / v[i];
+        ll s1 = 0, sn = 0;
 
-            cout << nd << " " ;
+        for(int i = 2; i < n; i++) s1 += (i - 1) * v[i];
+        for(int i = n - 1; i > 1; i--) sn += (n - i) * v[i];
 
-            if(nd > 1000) nd = 1000;
-            else if(nd < -1000) nd = -1000;
+        v[n] = (f[1] - s1) / (n - 1);
+        v[1] = (f[n] - sn) / (n - 1);
 
-            ans[i] = nd;
-            sum -= v[i] * nd;
-        }
-
-        // for(int i = 1; i <= n; i++) cout << ans[i] << " ";
+        for(int i = 1; i <= n; i++) cout << v[i] << " ";
         cout << endl;
     }
     
     return 0;
-}
+}                        
