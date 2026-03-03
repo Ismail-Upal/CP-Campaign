@@ -7,10 +7,10 @@ using ll = long long;
 
 
 void Solve(){
-    int n, m, d; cin >> n >> m >> d;
-    int ans = d / m + 1;
-    ans = (n + ans - 1) / ans;
-    cout << ans << endl;
+    int n, m, k; cin >> n >> m >> k; k--;
+    if(n > m) swap(n, m);
+    if(m > (n + 1) * k) cout << "No" << endl;
+    else cout << "Yes" << endl;
 }
 
 int main()

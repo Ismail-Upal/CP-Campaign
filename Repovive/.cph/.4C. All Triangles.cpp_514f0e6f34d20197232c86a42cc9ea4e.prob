@@ -1,0 +1,1 @@
+{"name":"Local: 4C","url":"d:\\CP-Campaign\\Repovive\\4C. All Triangles.cpp","tests":[{"id":1772465088941,"input":"5\n3\n3 4 5\n4\n1 3 4 5\n6\n1 1 1 10 10 10\n2\n1 1000\n4\n5 5 5 5\n","output":"0\n1\n2\n0\n0\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP-Campaign\\Repovive\\4C. All Triangles.cpp","group":"local","local":true}
