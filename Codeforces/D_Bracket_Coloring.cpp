@@ -12,27 +12,44 @@ void Solve(){
     string s; cin >> s;
 
     vector<int> ans(n);
-
-    int i = 0, j = 0;
+    int i = 0, j = 0, cnt = 0;
     while(j < n){
-        while(i < n and s[i] != '(') i++;
-        j = max(i + 1, j);
-        while(j < n and s[j] != ')') j++;
-
-        if(i < j and j < n and s[i] == '(' and s[j] == ')') ans[i] = 1, ans[j] = 1;
-        i++, j++;
+        if(s[i] == '('){
+            cnt = 1;
+            j++;
+            while(j < n and cnt != 0){
+                if(s[j] == '(') cnt++;
+                else cnt--;
+                j++;
+            }
+            if(!cnt) for(int k = i; k < j; k++) ans[k] = 1;
+        }
+        else{
+            cnt = 1;
+            j++;
+            while(j < n and cnt != 0){
+                if(s[j] == ')') cnt++;
+                else cnt--;
+                j++;
+            }
+            if(!cnt) for(int k = i; k < j; k++) ans[k] = 2;
+        }
+        i = j;
     }
-    i = 0, j = 0;
-    while(j < n){
-        while(i < n and s[i] != ')' and ans[i] != 0) i++;
-        j = max(i + 1, j);
-        while(j < n and s[j] != '(' and ans[j] != 0) j++;
 
-        if(i < j and j < n and s[i] == ')' and s[j] == '(' and ans[i] + ans[j] == 0) ans[i] = 2, ans[j] = 2;
-        i++, j++;
+    int op = 0;
+    for(auto i : ans) op |= i;
+    if(ans[n - 1] == 0) cout << -1 << endl;
+    else if(op == 1 or op == 2){
+        cout << 1 << endl;
+        for(int i = 0; i < n; i++) cout << 1 << " ";
+        cout << endl;
     }
-    for(auto i : ans) cout << i << " ";
-    cout << endl;
+    else{
+        cout << 2 << endl;
+        for(int i : ans) cout << i << " ";
+        cout << endl;
+    }
 }
 
 int main()
