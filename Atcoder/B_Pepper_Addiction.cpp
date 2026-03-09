@@ -8,18 +8,16 @@ using ll = long long;
 
 void Solve(){
     int n, m; cin >> n >> m;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++) cin >> v[i];
-
+    vector<int> c(m + 1);
+    for(int i = 1; i <= m; i++) cin >> c[i];
+    vector<int> can(m + 1);
+    for(int i = 1; i <= n; i++){
+        int a, b; cin >> a >> b;
+        can[a] += b;
+    }
     ll ans = 0;
-    int i = 0, j = 1;
-    while(j < n){
-        while(j < n and v[j - 1] < 2 * v[j]) j++;
-        j--;
-        int len = j - i + 1;
-        if(len >= m) ans += len - m; 
-        i = j + 1;
-        j = i + 1;
+    for(int i = 1; i <= m; i++){
+        ans += min(can[i], c[i]);
     }
     cout << ans << endl;
 }
@@ -28,7 +26,7 @@ int main()
 {   
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
-    int t = 1; cin >> t;
+    int t = 1; //cin >> t;
     for(int i = 1; i <= t; i++){
         Solve();
     }

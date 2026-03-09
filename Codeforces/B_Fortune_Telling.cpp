@@ -7,21 +7,16 @@ using ll = long long;
 
 
 void Solve(){
-    int n, m; cin >> n >> m;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++) cin >> v[i];
+    ll n, x, z; cin >> n >> x >> z;
+    ll y = x + 3;
 
-    ll ans = 0;
-    int i = 0, j = 1;
-    while(j < n){
-        while(j < n and v[j - 1] < 2 * v[j]) j++;
-        j--;
-        int len = j - i + 1;
-        if(len >= m) ans += len - m; 
-        i = j + 1;
-        j = i + 1;
+    for(ll i = 0; i < n; i++){
+        ll j; cin >> j;
+        x += j, y += j;
     }
-    cout << ans << endl;
+
+    if(x % 2 == z % 2) cout << "Alice" << endl;
+    else cout << "Bob" << endl;
 }
 
 int main()
