@@ -8,44 +8,33 @@ using ll = long long;
 
 void Solve(){
     ll n, h; cin >> n >> h;
-    vector<ll> dirt(n + 1);
-    for(int i = 1; i <= n; i++) cin >> dirt[i];
+	vector<ll> v(n);
+	for (auto &x : v) cin >> x;
 
-    ll ans = 0;
-    for(int i = 1; i <= n; i++){
-        vector<int> d(n + 1);
-        d[i] = h;
+	vector<ll> cnt(n);
+	for(ll i = 0; i < n; i++){
+		ll curr = v[i];
+		cnt[i] = h - curr;
+		for(ll j = i+1; j < n; j++)
+			curr = max(curr, v[j]), cnt[i] += h - curr;
+            
+		curr = v[i];
+		for(ll j = i-1; j >= 0; j--)
+			curr = max(curr, v[j]), cnt[i] += h - curr;
+	}
 
-        ll H = dirt[i];
-        ll l = i - 1, r = i + 1;
-        ll sum = h - dirt[i], mx = dirt[i];
-        while(l >= 1){
-            H = max(H, dirt[l]);    
-            mx = max(mx, dirt[l]);
-            sum += h - mx;
-            if(mx > dirt[l]) d[l] = min(dirt[l], mx);
-            else d[l] = h;
-            l--;
-        }
-        mx = dirt[i];
-        while(r <= n){
-            H = max(H, dirt[r]);
-            mx = max(mx, dirt[r]);
-            sum += h - mx;
-
-            if(mx > dirt[r]) d[r] = min(mx, dirt[r]);
-            else d[r] = h;
-            r++;
-        }
-
-        ll sum2 = 0;
-        
-        for(int i = 1; i <= n; i++) cout << d[i] << " ";
-        cout << endl;
-        ans = max(ans, sum + sum2);
-    }
-    
-    
+    ll best = 0;
+	for(ll i = 0; i < n; i++){
+		ll mx = v[i], arg = i;
+		for(ll j = i; j < n; j++){
+			if (v[j] > mx) {
+				mx = v[j];
+				arg = j;
+			}
+			best = max(cnt[i] + cnt[j] - cnt[arg], best);
+		}
+	}
+	cout << best << "\n";
 }
 
 int main()

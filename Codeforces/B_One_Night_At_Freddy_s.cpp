@@ -8,27 +8,25 @@ using ll = long long;
 
 void Solve(){
     int n, m, l; cin >> n >> m >> l;
-    vector<ll> v(n + 1);
-    for(int i = 1; i <= n; i++) cin >> v[i];
-
-    multiset<ll> se;
-    for(int i = 1; i <= m; i++) se.insert(0);
-   
-    for(int i = 1; i <= n; i++){
-        ll d = min(m, n - i + 2);
-        ll add = v[i] - v[i - 1] - 1;
-        auto it = se.end(); it--;
-        for(int i = 1; i <= d; i++){
-            add += *it;
-            it--;
-        }
-        it = se.end(); it--;
-        for(int i = 1; i <= d; i++){
-            *it = add / d;
-            
-        }
+    vector<int> a(l + 1, 0);
+    for(int i = 0; i < n; i++){
+        int x; cin >> x;
+        a[x] = 1;
     }
+    vector<int> d(m, 0);
+    
+    for(int i = 1; i <= l; i++){
+        sort(d.rbegin(), d.rend());
+        int del = min(n + 1, m);
+        d[del - 1]++;
+        if(a[i]){
+            sort(d.rbegin(), d.rend());
+            d[0] = 0;   
+            n--;
+        }
+    }   
 
+    cout << *max_element(d.begin(), d.end()) << endl;
 }
 
 int main()
