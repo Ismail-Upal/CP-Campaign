@@ -20,16 +20,24 @@ int main()
         for(int i = 0; i < n; i++) cin >> b[i];
         sort(a.begin(), a.end());
         sort(b.begin(), b.end());
+        
+        auto ok = [&](ll del){
+            for(int i = 0, j = del; i < n - del; i++, j++){
+                if(a[i] >= b[j]) return 0;
+            }
+            return 1;
+        };
 
-        int ans = 0;
-        int i = 0, j = n - 1;
-        while(i < j and (a[0] >= b[i] or a[j] >= b[n - 1])){
-            ans++;
-            i++, j--;        
+        ll l = 0, r = n, ans = -1, mid;
+        while(l <= r){
+            mid = l + (r - l) / 2;
+            if(ok(mid)){
+                ans = mid;
+                r = mid - 1;
+            }
+            else l = mid + 1;
         }
-        for(int k = i; k <= j; k++){
-            if(a[k] >= b[k]) ans++;
-        }
+
         cout << ans << endl;
     }
     
