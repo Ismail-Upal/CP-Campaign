@@ -1,0 +1,11 @@
+# Ignore everything by default.
+*
+
+# Keep directories traversable so negated patterns can match files inside.
+!*/
+
+# Track only C++ source files.
+!*.cpp
+
+# Keep ignore rules in version control.
+!.gitignore
