@@ -1,46 +1,49 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
-using ll = long long;
+
+#define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
+#define ll long long
 #define endl '\n'
 #define sz(x) (ll)(x).size()
-//-------------------------------------------
-ll dp[2][11][20][2];
 
-ll rec(string &s, bool tight, ll prev, ll idx, bool lz){
-    if(idx == s.size()) return 1;
-    if(dp[tight][prev][idx][lz] != -1) return dp[tight][prev][idx][lz];
+ll dp[20][2][2][10];
 
-    ll lo = 0;
-    ll up = (tight == true) ? (s[idx] - '0') : 9;
+ll rec(int i, bool tight, bool lz, int prev, string &s){
+    if(i == s.size()) return 1;
 
+    if(dp[i][tight][lz][prev] != -1) return dp[i][tight][lz][prev];
+    
+    int up = tight ? (s[i] - '0') : 9;
     ll ans = 0;
-    for(ll dg = lo; dg <= up; dg++){
-        if(dg == prev and !lz) continue;
-        
-        ans += rec(s, (tight and dg == up) ? 1 : 0, dg, idx + 1, (dg == 0 and lz));
+    for(int d = 0; d <= up; d++){
+        if(d == prev and !lz) continue;
+        ans += rec(i + 1, tight && (d == up), lz && (d == 0), d, s);
     }
+    return dp[i][tight][lz][prev] = ans;
+}
 
-    return dp[tight][prev][idx][lz] = ans;
+void Solve(){
+    ll a, b; cin >> a >> b;
+
+    string s = to_string(a - 1);
+    memset(dp, -1, sizeof dp);
+    ll l = rec(0, 1, 1, 0, s);
+
+    s = to_string(b);
+    memset(dp, -1, sizeof dp);
+    ll r = rec(0, 1, 1, 0, s);
+    
+    cout << r - l << endl;
 }
 
 int main()
 {   
-    opt();
-    
-    
-        ll a, b; cin >> a >> b;
-        string l = to_string(a - 1);
-        string r = to_string(b);
-
-        memset(dp, -1, sizeof dp);
-        ll ans_l = rec(l, 1, 10, 0, 1);
-        memset(dp, -1, sizeof dp);
-        ll ans_r = rec(r, 1, 10, 0, 1);
-
-        cout << ans_r - ans_l << endl;
-    
+    fast;
+    int t = 1;
+    // cin >> t;
+    for(int i = 1; i <= t; i++){
+        Solve();
+    }
     
     return 0;
 }
