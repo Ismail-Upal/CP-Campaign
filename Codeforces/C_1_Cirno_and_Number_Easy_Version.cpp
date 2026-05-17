@@ -93,7 +93,7 @@ int main()
 {   
     fast;
     int t = 1;
-    // cin >> t;
+    cin >> t;
     for(int i = 1; i <= t; i++){
         Solve();
     }

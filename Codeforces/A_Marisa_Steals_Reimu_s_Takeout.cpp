@@ -9,26 +9,20 @@ using namespace std;
 
 
 void Solve(){
-    ll a, n; cin >> a >> n;
+    int n; cin >> n;
     map<int, int> mp;
     for(int i = 0; i < n; i++){
         int x; cin >> x;
         mp[x]++;
     }
 
-    ll ans = LLONG_MAX;
+    int ans = mp[0];
+    int mn = min(mp[1], mp[2]);
+    mp[1] -= mn, mp[2] -= mn;
+    ans += mn;
 
-    for(int i = 0; i <= 1000; i++){
-        string s = to_string(i);
-        int ok = 1;
-        for(auto j : s){
-            if(!mp[j - '0']) ok = 0;
-        }
-
-        if(ok){
-            ans = min(ans, abs(a - i));
-        }
-    }
+    ans += mp[1] / 3;
+    ans += mp[2] / 3;
     cout << ans << endl;
 }
 
@@ -36,7 +30,7 @@ int main()
 {   
     fast;
     int t = 1;
-    // cin >> t;
+    cin >> t;
     for(int i = 1; i <= t; i++){
         Solve();
     }
