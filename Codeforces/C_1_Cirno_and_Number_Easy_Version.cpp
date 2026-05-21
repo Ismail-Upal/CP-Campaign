@@ -10,81 +10,93 @@ using namespace std;
 
 void Solve(){
     ll a, n; cin >> a >> n;
-    vector<ll> b(n);
-    for(int i = 0; i < n; i++) cin >> b[i];
+    vector<char> b(n);
+    map<char, int> mp;
+    for(int i = 0; i < n; i++){ 
+        cin >> b[i];
+        mp[b[i]]++;
+    }
 
     ll ans = LLONG_MAX;
     string s = to_string(a);
 
     string num = "";
-    if(b[0] == 0) num += b[1] + '0';
-    else num += b[0] + '0';
-    for(int i = 0; i < sz(s); i++) num += b[0] + '0';
+    if(b[0] == '0') num += b[1];
+    else num += b[0];
+    for(int i = 0; i < sz(s); i++) num += b[0];
 
     ans = min(ans, abs(a - stoll(num)));
     num = "";
 
     for(int i = 0; i < sz(s) - 1; i++){
-        num += b.back() + '0';
+        num += b.back();
     }
     if(num != "") ans = min(ans, abs(a - stoll(num)));
-    
     num = "";
-    int i = 0;
-    while(i < sz(s)){
-        if(s[i] - '0' == b[0]) num += s[i];
-        else if(s[i] - '0' == b[1]) num += s[i];
-        else break;
-        i++;
+    
+    int ok = 0;
+    for(auto c : b){
+        if(c <= s[0] and c != '0') ok = 1;
     }
+    if(ok){
+        string t = "";
+        int i = 0;
+        while(i < sz(s) and mp[s[i]]){
+            t += s[i];
+            i++;
+        }
+        if(i == sz(s)){
+            cout << 0 << endl; return;        
+        } 
 
-    if(i == sz(s)){
-        cout << 0 << endl;
-        return;
-    }
-
-    int mx = b.back();
-    for(auto j : b){
-        if(j > s[i] - '0'){
-            mx = j; break;
+        while(i >= 0){
+            char mn = b[0];
+            for(auto j : b){
+                if(j < s[i]) mn = j;
+            }
+        
+            string tmp = t;
+            tmp += mn;
+            for(int j = i + 1; j < sz(s); j++) tmp += b.back();
+            ans = min(ans, abs(a - stoll(tmp)));
+            // cout << tmp << endl;
+            i--;
+            t.pop_back();
         }
     }
 
-    num += mx + '0';
-    i++;
-
-    while(i < sz(s)){
-        num += b[0] + '0';
-        i++;
+    ok = 0;
+    for(auto c : b){
+        if(c >= s[0]) ok = 1;
     }
-    ans = min(ans, abs(a - stoll(num)));
-
-    num = "", i = 0;
-    while(i < sz(s)){
-        if(s[i] - '0' == b[0]) num += s[i];
-        else if(s[i] - '0' == b[1]) num += s[i];
-        else break;
-        i++;
-    }
-
-    int mn = b[0];
-    for(auto j : b){
-        if(j > s[i] - '0'){
-            break;
+    if(ok){
+        string t = "";
+        int i = 0;
+        while(i < sz(s) and mp[s[i]]){
+            t += s[i];
+            i++;
         }
-        mn = j;
+        if(i == sz(s)){
+            cout << 0 << endl; return;
+        }
+
+        while(i >= 0){
+            char mx = b.back();
+            for(auto j : b){
+                if(j > s[i]){
+                    mx = j; break;
+                }
+            }
+
+            string tmp = t;
+            tmp += mx;
+            for(int j = i + 1; j < sz(s); j++) tmp += b[0];
+            ans = min(ans, abs(a - stoll(tmp)));
+            
+            i--;
+            t.pop_back();
+        }
     }
-    if(i == 0 and mn == 0) mn = b[1];
-
-    num += mn + '0';
-    i++;
-
-    while(i < sz(s)){
-        num += b.back() + '0';
-        i++;
-    }
-
-    ans = min(ans, abs(a - stoll(num)));
 
     cout << ans << endl;
 }

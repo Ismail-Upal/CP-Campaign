@@ -10,14 +10,14 @@ ll random(ll a, ll b) {
 int main(int argc, char* argv[]) {
     rng.seed(argc > 1 ? atoi(argv[1]) : chrono::steady_clock::now().time_since_epoch().count());
     
-    ll a = random(0, 100), n = 2;
+    ll a = random(0, 100000000000000000), n = random(1, 10);
     cout << a << " " << n << endl;
-    
-    
-        ll x = random(0, 8);
-        ll y = random(x + 1, 9);
-        cout << x << " " << y << endl;
-    
+    int pre = -1;
+    for(int i = 1; i <= n; i++){
+        int x = random(pre + 1, n - (n - i) - 1);
+        cout << x << " ";
+        pre = x;
+    }cout << endl; 
 
     return 0;
 }
