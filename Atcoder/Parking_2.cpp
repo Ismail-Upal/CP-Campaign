@@ -9,15 +9,25 @@ using namespace std;
 
 
 void Solve(){
-    int x, y; cin >> x >> y;
-    if(x * 9 == y * 16) cout << ""
+    int x, y, l, r, a, b; 
+    cin >> x >> y >> l >> r >> a >> b;
+
+    int ans = 0;
+    if(r <= a or b <= l) ans = (b - a) * y;
+    else{
+        ans += max(l - a, 0) * y;
+        ans += max(b - r, 0) * y;
+        
+        ans += (min(r, b) - max(l, a)) * x;
+    } 
+    cout << ans << endl;
 }
 
 int main()
 {   
     fast;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     for(int i = 1; i <= t; i++){
         Solve();
     }

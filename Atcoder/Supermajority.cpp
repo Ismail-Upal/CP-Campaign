@@ -9,15 +9,16 @@ using namespace std;
 
 
 void Solve(){
-    int x, y; cin >> x >> y;
-    if(x * 9 == y * 16) cout << ""
+    int a, b; cin >> a >> b;
+    if(3 * a > 2 * b) cout << "Yes";
+    else cout << "No";
 }
 
 int main()
 {   
     fast;
     int t = 1;
-    cin >> t;
+    // cin >> t;
     for(int i = 1; i <= t; i++){
         Solve();
     }

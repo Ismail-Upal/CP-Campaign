@@ -9,8 +9,16 @@ using namespace std;
 
 
 void Solve(){
-    int x, y; cin >> x >> y;
-    if(x * 9 == y * 16) cout << ""
+    int n; cin >> n;
+    vector<int> v(n + 1);
+    for(int i = 1; i <= n; i++) cin >> v[i];
+    int ok = 1;
+    for(int i = 1; i <= n; i++){
+        if(v[i] > i) ok = 0;
+    }
+
+    if(ok) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }
 
 int main()

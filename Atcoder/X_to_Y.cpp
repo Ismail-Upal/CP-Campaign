@@ -3,14 +3,24 @@ using namespace std;
 
 #define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
 #define ll long long
+#define lll __int128_t
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 
 
 
 void Solve(){
-    int x, y; cin >> x >> y;
-    if(x * 9 == y * 16) cout << ""
+    ll x, y, k; cin >> x >> y >> k;
+
+    ll ans = 1e18;
+    for(ll i = x, j = 0; i > 0; i /= k, j++){
+        for(ll z = i, op = 0; z <= 1e18; z *= k, op++){
+            if(z == y){
+                ans = min(ans, op + j);
+            }
+        }
+    }
+    cout << ans << endl;
 }
 
 int main()
