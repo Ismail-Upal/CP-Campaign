@@ -3,22 +3,23 @@ using namespace std;
 
 #define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
 #define ll long long
-#define lll __int128_t
 #define endl '\n'
 #define sz(x) (ll)(x).size()
 
 
 
 void Solve(){
-    ll x, y, k; cin >> x >> y >> k;
-
-    ll ans = 0;
-    while(x != y){
-        if(x > y) x /= k;
-        else y /= k;
-        ans++;
+    int n; cin >> n;
+    string s; cin >> s;
+    int mx = 0, cnt = 0;
+    for(auto i : s){
+        if(i == '#'){
+            cnt++;
+        }
+        else cnt = 0;
+        mx = max(mx, cnt);
     }
-    cout << ans << endl;
+    cout << (mx + 1) / 2 << endl;
 }
 
 int main()
