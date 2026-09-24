@@ -9,26 +9,23 @@ using namespace std;
 
 
 void Solve(){
-    int n; cin >> n;
+    int n; cin >> n; 
     vector<int> v(n);
     for(int i = 0; i < n; i++) cin >> v[i];
-    reverse(v.begin(), v.end());
 
-    multiset<int> se;
-    for(int i = 0; i < n; i++){
-        auto lo = se.lower_bound(v[i]);
-        if(lo == se.begin()){
-            se.insert(v[i]);
-            continue;
+    ll ans = 0;
+    map<int, int> mp;
+    int i = 0, j = 0;
+    while(i < n){
+        mp[v[j]]++;
+        while(i < n and (mp[v[j]] > 1 or j == n)){
+            ans += j - i;
+            mp[v[i]]--;
+            i++;
         }
-        lo--;
-        if(*lo < v[i]){
-            se.erase(lo);
-        }
-        se.insert(v[i]);
+        j++;
     }
-
-    cout << sz(se);
+    cout << ans;
 }
 
 int main()

@@ -10,25 +10,18 @@ using namespace std;
 
 void Solve(){
     int n; cin >> n;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++) cin >> v[i];
-    reverse(v.begin(), v.end());
 
-    multiset<int> se;
-    for(int i = 0; i < n; i++){
-        auto lo = se.lower_bound(v[i]);
-        if(lo == se.begin()){
-            se.insert(v[i]);
-            continue;
+    int spc = n - 1, str = 1;
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= spc; j++){
+            cout << " ";
         }
-        lo--;
-        if(*lo < v[i]){
-            se.erase(lo);
+        for(int j = 1; j <= str; j++){
+            cout << "*";
         }
-        se.insert(v[i]);
+        spc--, str += 2;
+        cout << endl;
     }
-
-    cout << sz(se);
 }
 
 int main()

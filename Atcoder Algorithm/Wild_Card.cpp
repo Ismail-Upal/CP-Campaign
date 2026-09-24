@@ -10,25 +10,18 @@ using namespace std;
 
 void Solve(){
     int n; cin >> n;
-    vector<int> v(n);
-    for(int i = 0; i < n; i++) cin >> v[i];
-    reverse(v.begin(), v.end());
+    string s, t; 
+    cin >> s >> t;
+    int ok = 1;
 
-    multiset<int> se;
     for(int i = 0; i < n; i++){
-        auto lo = se.lower_bound(v[i]);
-        if(lo == se.begin()){
-            se.insert(v[i]);
-            continue;
+        if(t[i] != '*'){
+            if(s[i] != t[i]) ok = 0;
         }
-        lo--;
-        if(*lo < v[i]){
-            se.erase(lo);
-        }
-        se.insert(v[i]);
     }
 
-    cout << sz(se);
+    if(ok) cout << "Yes";
+    else cout << "No";
 }
 
 int main()
