@@ -1,23 +1,37 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int N = 1e3 + 3;
+
+#define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
+#define ll long long
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+
+const int N = 1004;
+int n, m;
 char g[N][N];
 bool vis[N][N];
 int dis[N][N];
-int di[] = {0, 1, 0, -1}, dj[] = {1, 0, -1, 0};
-int n, m;
-bool valid(int i, int j){return (i >= 0 and i < n and j >= 0 and j < m);}
-queue<pair<int, int>> q;
+int dx[] = {0, -1, 0, 1};
+int dy[] = {1, 0, -1, 0};
+char path[] = {'R', 'U', 'L', 'D'};
+bool valid(int i, int j){
+    return (i >= 1 and i <= n and j >= 1 and j <= m);
+}
 
 void bfs(int si, int sj){
+    queue<pair<int, int>> q;
     q.push({si, sj});
-    vis[si][sj] = 1; dis[si][sj] = 0;
+    vis[si][sj] = 1;
+    dis[si][sj] = 0;
 
     while(!q.empty()){
-        auto [pi,pj] = q.front(); q.pop();
+        auto [pi, pj] = q.front();
+        q.pop();
+
         for(int i = 0; i < 4; i++){
-            int ci = pi + di[i];
-            int cj = pj + dj[i];
+            int ci = pi + dx[i];
+            int cj = pj + dy[i];
+
             if(valid(ci, cj) and !vis[ci][cj] and g[ci][cj] == '.'){
                 q.push({ci, cj});
                 vis[ci][cj] = 1;
@@ -27,44 +41,50 @@ void bfs(int si, int sj){
     }
 }
 
-int main()
-{   
-    int si, sj, desi, desj;
+void Solve(){
+    int si, sj, di, dj;
     cin >> n >> m;
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
             cin >> g[i][j];
             if(g[i][j] == 'A') si = i, sj = j, g[i][j] = '.';
-            if(g[i][j] == 'B') desi = i, desj = j, g[i][j] = '.';
+            if(g[i][j] == 'B') di = i, dj = j, g[i][j] = '.';
         }
     }
 
-    bfs(si, sj); 
+    bfs(si, sj);
 
-    if(!vis[desi][desj]) cout << "NO" ;
-    else{
-        string path;
-        int x = dis[desi][desj];
-        cout << "YES" << endl << x << endl;
-        
-        while(x > 0){
-            for(int i = 0; i < 4; i++){
-                int ci = desi - di[i];
-                int cj = desj - dj[i];
-                if(valid(ci, cj) and vis[ci][cj] and dis[ci][cj] == x - 1){
-                    if(di[i] == 0 and dj[i] == 1) path.push_back('R');
-                    if(di[i] == 0 and dj[i] == -1) path.push_back('L');
-                    if(di[i] == 1 and dj[i] == 0) path.push_back('D');
-                    if(di[i] == -1 and dj[i] == 0) path.push_back('U');
-                    x--;
-                    desi = ci, desj = cj;
-                    break;
-                }
+    if(!vis[di][dj]){
+        cout << "NO"; return;
+    }
+    cout << "YES" << endl << dis[di][dj] << endl;
+
+    string s = "";
+    int x = di, y = dj, d = dis[di][dj];
+    while(d){
+        for(int i = 0; i < 4; i++){
+            int ci = x - dx[i];
+            int cj = y - dy[i];
+            if(valid(ci, cj) and g[ci][cj] == '.' and dis[ci][cj] + 1 == d){
+                s += path[i];
+                x = ci, y = cj;
+                d--;
+                break;
             }
         }
-        
-        reverse(path.begin(), path.end());
-        cout << path;
+    }
+
+    reverse(s.begin(), s.end());
+    cout << s ;
+}
+
+int main()
+{   
+    fast;
+    int t = 1;
+    // cin >> t;
+    for(int i = 1; i <= t; i++){
+        Solve();
     }
     
     return 0;

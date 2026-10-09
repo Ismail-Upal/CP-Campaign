@@ -1,8 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
-using ll = long long;
-const ll N = 2e5 + 3;
-vector<vector<pair<ll, ll>>> g(N);
+
+#define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
+#define ll long long
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+
+const ll N = 1e5 + 5;
+ll n, m;
+vector<pair<ll, ll>> g[N];
 ll dis[N];
 struct cmp{
     bool operator()(pair<ll, ll> a, pair<ll, ll> b){
@@ -13,11 +19,13 @@ struct cmp{
 void dijkstra(ll src){
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, cmp> pq;
     fill(dis, dis + N, 1e18);
+
     dis[src] = 0;
     pq.push({src, 0});
-
     while(!pq.empty()){
-        auto par = pq.top(); pq.pop();
+        auto par = pq.top();
+        pq.pop();
+
         ll u = par.first;
         ll uw = par.second;
 
@@ -25,7 +33,7 @@ void dijkstra(ll src){
         for(auto child : g[u]){
             ll v = child.first;
             ll vw = child.second;
-
+            
             if(uw + vw < dis[v]){
                 dis[v] = uw + vw;
                 pq.push({v, dis[v]});
@@ -34,16 +42,25 @@ void dijkstra(ll src){
     }
 }
 
-int main()
-{   
-    ll n, m; cin >> n >> m;
+void Solve(){
+    cin >> n >> m;
     while(m--){
         ll u, v, w; cin >> u >> v >> w;
         g[u].push_back({v, w});
     }
-    dijkstra(1);
 
-    for(ll i = 1; i <= n; i++) cout << dis[i] << " " ;
+    dijkstra(1);
+    for(ll i = 1; i <= n; i++) cout << dis[i] << " ";
+}
+
+int main()
+{   
+    fast;
+    ll t = 1;
+    // cin >> t;
+    for(ll i = 1; i <= t; i++){
+        Solve();
+    }
     
     return 0;
 }

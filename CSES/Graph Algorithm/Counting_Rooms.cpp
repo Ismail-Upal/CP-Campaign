@@ -1,12 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
-const int N = 1e3;
+
+#define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
+#define ll long long
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+
+const int N = 1004;
+int n, m;
 char g[N][N];
 bool vis[N][N];
-int di[] = {0, 1, 0, -1};
+int di[] = {0, -1, 0, 1};
 int dj[] = {1, 0, -1, 0};
-int n, m;
-bool valid(int i, int j){return (i >= 0 and i < n and j >= 0 and j < m);}
+bool valid(int i, int j){
+    return (i >= 1 and i <= n and j >= 1 and j <= m);
+}
 
 void dfs(int si, int sj){
     vis[si][sj] = 1;
@@ -19,23 +27,35 @@ void dfs(int si, int sj){
     }
 }
 
-int main()
-{   
+void Solve(){
     cin >> n >> m;
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++) cin >> g[i][j];
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
+            cin >> g[i][j];
+        }
     }
 
     int room = 0;
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < m; j++){
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= m; j++){
             if(!vis[i][j] and g[i][j] == '.'){
-                dfs(i, j); room++;
+                dfs(i, j);
+                room++;
             }
         }
     }
 
     cout << room;
+}
+
+int main()
+{   
+    fast;
+    int t = 1;
+    // cin >> t;
+    for(int i = 1; i <= t; i++){
+        Solve();
+    }
     
     return 0;
 }
