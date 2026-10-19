@@ -19,7 +19,7 @@ void Solve(){
     ll l = 0, ans = 0;
 
     for(ll r = 1; r <= n; r++){
-        while(l + k + 1 <= r){
+        while(l <= r - k - 1){
             mp[pref[l] % k]++;
             l++;
         }
