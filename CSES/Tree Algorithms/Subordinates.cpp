@@ -1,41 +1,45 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
-#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
-using ll = long long;
+
+#define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
+#define ll long long
 #define endl '\n'
 #define sz(x) (ll)(x).size()
-//-------------------------------------------
-const int N = 2e5 + 3;
-vector<vector<int>> g(N);
-vector<bool> vis(N);
-vector<int> dis(N);
 
-int dfs(int u){
-    vis[u] = 1;
-    dis[u] = 1;
-    int node = 0;
-    for(auto v : g[u]){
-        if(!vis[v]){
-            node += dfs(v) + 1;
+const int N = 2e5 + 3;
+vector<int> g[N], subs(N, 0);
+
+int dfs(int u, int p){
+    int cnt = 0;
+    for(int v : g[u]){
+        if(v != p){
+            cnt += dfs(v, u) + 1 ;
         }
     }
-    return dis[u] = node;
+
+    return subs[u] = cnt;
+}
+
+void Solve(){
+    int n; cin >> n;
+    for(int i = 2; i <= n; i++){
+        int u; cin >> u;
+        g[u].push_back(i);
+        g[i].push_back(u);
+    }
+
+    subs[1] = dfs(1, -1);
+    for(int i = 1; i <= n; i++) cout << subs[i] << " "; 
 }
 
 int main()
 {   
-    opt();
-    
-    int n; cin >> n;
-    for(int i = 2; i <= n; i++){
-        int v; cin >> v;
-        g[v].push_back(i);
-        g[i].push_back(v);
+    fast;
+    int t = 1;
+    // cin >> t;
+    for(int i = 1; i <= t; i++){
+        Solve();
     }
-    dfs(1);
-
-    for(int i = 1; i <= n; i++) cout << dis[i] << " " ;
     
     return 0;
 }
