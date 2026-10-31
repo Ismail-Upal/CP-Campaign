@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+#define fast {ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);}
+#define ll long long
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+
+
+void solve(){
+    int n; cin >> n;
+    string s; cin >> s;
+    map<char, vector<int>> mp;
+    set<char> se;
+
+    for(int i = 0; i < n; ){
+        int l = i, r = i + 1, cnt = 1;
+
+        while(r < n and s[r] == s[l]) r++, cnt++;
+        r--;
+
+        if(cnt <= l  (n - r - 1)){
+            cout << "NO" << endl;
+            return;
+        }
+        
+        i = r + 1;
+    }
+
+    cout << "YES"  << endl;
+}
+
+int main()
+{   
+    fast;
+    int t = 1;
+    cin >> t;
+    for(int i = 1; i <= t; i++){
+        solve();
+    }
+    
+    return 0;
+}
