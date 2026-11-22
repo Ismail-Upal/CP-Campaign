@@ -17,34 +17,77 @@ void Solve(){
     for(int i = 0; i < n - 1; i++){
         mx = max(mx, abs(v[i] - v[i + 1]));
     }
-
-    for(int i = 0; i < n; i++){
-        ll x = 2 * v[i];
-        if(i == 0) mx = min(mx, abs(x - v[i + 1]));
-        else if(i == n - 1) mx = min(mx, abs(x - v[i - 1]));
-        else mx = min(mx, max(abs(x - v[i - 1]), abs(x - v[i + 1])));
-    }
+    
 
     auto ok = [&](ll m){
-        ll l = 1;
-        while(l < n and abs(v[l] - v[l - 1]) <= m) l++;
-        ll r = n - 2;
-        while(r >= 0 and abs(v[r] - v[r + 1]) <= m) r--;
-
-        if(l > r) return 1;
-
-        if(abs(2 * v[l] - v[r + 1]) > m) return 0;
-        if(abs(2 * v[r] - v[l - 1]) > m) return 0;
-
-        for(ll i = l + 1; i <= r - 1; i++){
-            ll x = 2 * v[i - 1];
-            ll y = 2 * v[i];
-            ll z = 2 * v[i + 1];
-            if(abs(x - y) > m) return 0;
-            if(abs(y - z) > m) return 0;
+        ll bad = 0;
+        for(int i = 1; i < n; i++){
+            if(abs(v[i] - v[i - 1]) > m) bad++;
         }
 
-        return 1;
+        if(bad > 2) return 0;
+        if(bad == 0) return 1;
+
+        if(bad == 2){
+            ll l = -1, r = -1;
+            for(int i = 1; i < n; i++){
+                if(abs(v[i] - v[i - 1]) > m){
+                    if(l == -1) l = i;
+                    else r = i - 1;
+                }
+            }  
+            if(abs(v[l - 1] - 2 * v[r]) > m) return 0;
+            if(abs(2 * v[l] - v[r + 1]) > m) return 0;
+            for(int i = l; i <= r - 1; i++){
+                if(abs(2 * v[i] - 2 * v[i + 1]) > m) return 0;
+            }
+            return 1;
+        }
+
+        if(bad == 1){
+            ll l, r;
+            for(int i = 1; i < n; i++){
+                if(abs(v[i] - v[i - 1]) > m){
+                    l = i - 1, r = i;
+                }
+            }
+
+            for(int i = r; i < n; i++){
+                if(i == r){
+                    bool a = abs(2 * v[i] - v[l]) <= m;
+                    bool b = 1;
+                    if(i != n - 1) b = abs(2 * v[i] - v[i + 1]) <= m;
+                    if(a and b) return 1;
+                }
+                else{
+                    if(abs(2 * v[i] - 2 * v[i - 1]) > m) break;
+
+                    bool a = abs(2 * v[i] - v[l]) <= m;
+                    bool b = 1;
+                    if(i != n - 1) b = abs(2 * v[l + 1] - v[i + 1]) <= m;
+                    if(a and b) return 1;   
+                }
+            }
+
+            for(int i = l; i >= 0; i--){
+                if(i == l){
+                    bool a = abs(2 * v[i] - v[r]) <= m;
+                    bool b = 1;
+                    if(i != 0) b = abs(2 * v[i] - v[i - 1]) <= m;
+                    if(a and b) return 1;
+                }
+                else{
+                    if(abs(2 * v[i] - 2 * v[i + 1]) > m) break;
+
+                    bool a = abs(2 * v[i] - v[r]) <= m;
+                    bool b = 1;
+                    if(i != 0) b = abs(2 * v[r - 1] - v[i - 1]) <= m;
+                    if(a and b) return 1;
+                }
+            }
+        }
+
+        return 0;
     };
     
     ll l = 0, r = mx, m, ans = mx;
